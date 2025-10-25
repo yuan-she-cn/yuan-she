@@ -1,1 +1,2 @@
 - [Orange 概述](/orange/)
+- [更新日志](/orange/logs)
