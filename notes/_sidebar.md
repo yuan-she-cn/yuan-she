@@ -1,0 +1,1 @@
+- [Ubuntu](/notes/ubuntu.md)

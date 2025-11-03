@@ -1,2 +1,4 @@
 - [首页](/)
 - [Orange](/orange/)
+- 随手笔记
+  - [Ubuntu](/notes/ubuntu.md)
