@@ -1,5 +1,5 @@
 - [首页](/)
-- [Orange](/orange/)
+<!-- - [Orange](/orange/) -->
 - 随手笔记
   - [Ubuntu](/notes/ubuntu.md)
   - [Docker](/notes/docker.md)
