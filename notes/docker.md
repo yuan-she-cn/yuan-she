@@ -26,20 +26,23 @@ docker run --name sqlserver2017 \
 -d mcr.microsoft.com/mssql/server:2017-latest
 ```
 
+> 可以通过设置 **MSSQL_SA_PASSWORD** 参数修改密码
+
 ## 安装 Nginx
 
 ```bash shell
 docker pull nginx:1.28.0
 sudo mkdir -p /home/nginx/conf
-sudo mkdir -p /home/nginx/html
 sudo mkdir -p /home/nginx/logs
+sudo mkdir -p /home/nginx/html
+sudo mkdir -p /home/nginx/cert
 sudo vim /home/nginx/conf/server.conf
 #server {
 #  listen 80;
 #  server_name _;
 #
 #  location / {
-#    root /usr/share/nginx/html;
+#    root /usr/nginx/html;
 #    index index.html;
 #  }
 #}
@@ -53,8 +56,9 @@ docker run --name nginx1.28.0 \
 --restart unless-stopped \
 --network network_1 \
 -v /home/nginx/conf:/etc/nginx/conf.d \
--v /home/nginx/html:/usr/share/nginx/html \
 -v /home/nginx/logs:/var/log/nginx \
+-v /home/nginx/html:/usr/nginx/html \
+-v /home/nginx/cert:/etc/nginx/cert \
 -p 80:80 \
 -p 443:443 \
 -d nginx:1.28.0
