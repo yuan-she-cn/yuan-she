@@ -4,4 +4,4 @@
 
 <!-- [Orange 文档](/orange/) -->
 
-[随手笔记](/notes/ubuntu.md)
+[开发笔记](/notes/ubuntu.md)
