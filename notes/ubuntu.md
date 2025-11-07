@@ -46,3 +46,16 @@ sudo systemctl restart docker
 ```
 
 ?> 镜像加速器地址由 [**王旭阳个人博客**](https://www.wxy97.com/archives/b5b225b6-7741-4560-be2f-2e6a4f671d9b) 提供
+
+## 安装 Skopeo
+
+Skopeo 是一款用于操作容器镜像和镜像仓库的命令行工具
+
+```bash shell
+# 安装
+sudo apt install -y skopeo
+
+# 查看镜像标签(版本)
+skopeo list-tags docker://hub.rat.dev/postgres >> postgresql.tag.txt
+skopeo list-tags docker://mcr.microsoft.com/mssql/server >> sqlserver.tag.txt
+```
