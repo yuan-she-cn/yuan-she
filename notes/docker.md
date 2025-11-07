@@ -11,12 +11,40 @@ docker network create network_1
 > 容器启动时使用 **--network** 参数加入网络，例如：--network network_1  
 > 同一网络中可使用 **容器名** 访问容器
 
+## 安装 PostgreSQL
+
+```bash shell
+docker pull postgres:18.0
+sudo mkdir -p /home/postgres/data
+sudo mkdir -p /home/postgres/logs
+sudo chmod 777 /home/postgres/logs
+docker run --name postgres \
+--restart unless-stopped \
+--network network_1 \
+-e "POSTGRES_PASSWORD=x5T9T7tJwAtSrZIr" \
+-e "TZ=Asia/Shanghai" \
+-v /home/postgres/data:/var/lib/postgresql/18/docker \
+-v /home/postgres/logs:/var/log/postgresql \
+-p 5432:5432 \
+-d postgres:18.0
+docker exec -it postgres /bin/bash
+  echo "logging_collector = on" >> /var/lib/postgresql/18/docker/postgresql.conf
+  echo "log_directory = '/var/log/postgresql'" >> /var/lib/postgresql/18/docker/postgresql.conf
+  echo "log_filename = '%Y-%m-%d.log'" >> /var/lib/postgresql/18/docker/postgresql.conf
+  echo "log_statement = 'mod'" >> /var/lib/postgresql/18/docker/postgresql.conf
+  echo "log_min_duration_statement = 5000" >> /var/lib/postgresql/18/docker/postgresql.conf
+  exit
+docker restart postgres
+```
+
+> 可以通过设置 **POSTGRES_PASSWORD** 参数修改密码
+
 ## 安装 SQLServer
 
 ```bash shell
 docker pull mcr.microsoft.com/mssql/server:2017-latest
 sudo mkdir -p /home/sqlserver
-docker run --name sqlserver2017 \
+docker run --name sqlserver \
 --restart unless-stopped \
 --network network_1 \
 -e "ACCEPT_EULA=Y" \
@@ -52,7 +80,7 @@ sudo vim /home/nginx/html/index.html
 #    Nginx 1.28.0
 #  </body>
 #</html>
-docker run --name nginx1.28.0 \
+docker run --name nginx \
 --restart unless-stopped \
 --network network_1 \
 -v /home/nginx/conf:/etc/nginx/conf.d \
