@@ -92,6 +92,38 @@ docker run --name nginx \
 -d nginx:1.28.0
 ```
 
+## 安装 Umami
+
+Umami 是一款开源、轻量的网站数据收集和分析平台
+
+```bash shell
+docker pull docker.umami.is/umami-software/umami:postgresql-3.0.0
+docker run --name umami \
+--restart unless-stopped \
+--network network_1 \
+-e "APP_SECRET=aITsO5HUSdbgTGK3" \
+-e "DATABASE_TYPE=postgresql" \
+-e "DATABASE_URL=postgresql://postgres:x5T9T7tJwAtSrZIr@postgres:5432/umami" \
+-p 3000:3000 \
+-d docker.umami.is/umami-software/umami:postgresql-3.0.0
+```
+
+> APP_SECRET 为随机字符串
+
+### 使用 Umami
+
+#### 设置语言
+
+<地球图标> --> <中文>
+
+#### 添加网站
+
+<网站> --> <添加网站> --> <填写表单> --> <保存>
+
+#### 收集数据
+
+<网站> --> <编辑图标> --> <复制跟踪代码> --> <粘贴到网站的 head 标签下>
+
 ## 常用命令
 
 ```bash shell
