@@ -2,6 +2,26 @@
 
 以下示例均在 Ubuntu 24.04.3 LTS 测试通过
 
+## 安装 SSH
+
+```bash shell
+# 安装 SSH
+sudo apt install -y openssh-server
+
+# 查看 SSH 启动状态
+sudo systemctl status ssh
+# 停止 SSH
+sudo systemctl stop ssh
+# 启动 SSH
+sudo systemctl start ssh
+# 重启 SSH
+sudo systemctl restart ssh
+# 设置 SSH 禁止开机启动
+sudo systemctl disable ssh
+# 设置 SSH 开机启动
+sudo systemctl enable ssh
+```
+
 ## 安装 Docker
 
 ```bash shell
