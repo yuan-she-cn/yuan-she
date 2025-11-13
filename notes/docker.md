@@ -124,6 +124,43 @@ docker run --name umami \
 
 <网站> --> <编辑图标> --> <复制跟踪代码> --> <粘贴到网站的 head 标签下>
 
+## 安装 NPS
+
+```bash shell
+wget https://github.com/ehang-io/nps/releases/download/v0.26.10/linux_amd64_server.tar.gz
+sudo mkdir -p /home/nps/conf
+sudo mkdir -p /home/nps/logs
+sudo touch /home/nps/logs/nps.log
+vim start.sh
+##! /bin/bash
+#if [ ! "$(ls -A /etc/nps/conf)"]; then
+#  cp -a /app/conf_default /etc/nps/conf
+#fi
+#nps start
+#tail -f /dev/null
+vim Dockerfile
+#FROM ubuntu:22.04
+#WORKDIR /app
+#ADD ./linux_amd64_server.tar.gz /app
+#COPY ./start.sh /app/start.sh
+#RUN chmod +x /app/start.sh
+#RUN ./nps install
+#RUN cp -a /etc/nps/conf /app/conf_default
+#CMD ["/app/start.sh"]
+docker build -t nps:0.26 .
+docker run --name nps \
+--restart unless-stopped \
+--network network_1 \
+-v /home/nps/conf:/etc/nps/conf \
+-v /home/nps/logs/nps.log:/var/log/nps.log \
+-p 8080:8080 \
+-d nps:0.26
+```
+
+> 默认用户名和密码：admin/123
+
+!> 容器重启时，nps 服务可能不能正常启动，可执行 **docker exec nps nps start** 手动启动。
+
 ## 常用命令
 
 ```bash shell
@@ -140,4 +177,18 @@ docker restart <ID/容器名>
 docker rm -f <ID/容器名>
 # 进入运行的容器，使用 exit 退出
 docker exec -it <ID/容器名> /bin/bash
+
+# 构建镜像
+docker build -t <镜像名> <构建目录>
 ```
+
+## Dockerfile 指令
+
+| 指令    | 作用                 | 示例                  |
+| ------- | -------------------- | --------------------- |
+| FROM    | 设置基础镜像         | FROM ubuntu:22.04     |
+| WORKDIR | 设置工作目录         | WORKDIR /app          |
+| COPY    | 复制文件到镜像       | COPY ./\* /app        |
+| ADD     | 类似 COPY，但可解压  | ADD ./\*.tar.gz /app  |
+| RUN     | 构建镜像时执行的命令 | RUN apt update        |
+| CMD     | 容器启动时执行的命令 | CMD ["apt", "update"] |
