@@ -134,7 +134,7 @@ sudo touch /home/nps/logs/nps.log
 vim start.sh
 ##! /bin/bash
 #if [ ! "$(ls -A /etc/nps/conf)"]; then
-#  cp -a /app/conf_default /etc/nps/conf
+#  cp -a /app/conf_default/* /etc/nps/conf/
 #fi
 #nps start
 #tail -f /dev/null
@@ -154,6 +154,7 @@ docker run --name nps \
 -v /home/nps/conf:/etc/nps/conf \
 -v /home/nps/logs/nps.log:/var/log/nps.log \
 -p 8080:8080 \
+-p 8024:8024 \
 -d nps:0.26
 ```
 
