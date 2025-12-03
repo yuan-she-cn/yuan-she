@@ -1,8 +1,10 @@
 # Docker
 
-以下示例均在 Docker version 28.5.1 测试通过
+以下示例均在 Docker version 28.5.1 测试通过。
 
 ## 创建桥接网络
+
+Docker 桥接网络是 Docker 创建的虚拟网络接口，它在宿主机内部创建一个虚拟交换机，让容器可以通过这个交换机相互通信。
 
 ```bash shell
 docker network create network_1
@@ -12,6 +14,9 @@ docker network create network_1
 > 同一网络中可使用 **容器名** 访问容器
 
 ## 安装 PostgreSQL
+
+PostgreSQL 是一款强大的开源对象关系数据库系统，经过 35 年的积极开发，在可靠性、功能健壮性和性能方面赢得了良好的声誉。
+[官方网站](https://www.postgresql.org)
 
 ```bash shell
 docker pull postgres:18.0
@@ -39,7 +44,10 @@ docker restart postgres
 
 > 可以通过设置 **POSTGRES_PASSWORD** 参数修改密码
 
-## 安装 SQLServer
+## 安装 SQL Server
+
+SQL Server 是一款关系数据库管理系统。应用程序和工具连接到 SQL Server 实例或数据库，并使用 Transact-SQL 进行通信。
+[官方网站](https://www.microsoft.com/zh-cn/sql-server)
 
 ```bash shell
 docker pull mcr.microsoft.com/mssql/server:2017-latest
@@ -57,6 +65,9 @@ docker run --name sqlserver \
 > 可以通过设置 **MSSQL_SA_PASSWORD** 参数修改密码
 
 ## 安装 Nginx
+
+Nginx 是一款 HTTP web 服务器、反向代理、内容缓存、负载均衡器、TCP/UDP 代理服务器和邮件代理服务器。最初由 Igor Sysoev 编写，并以 2-clause BSD 许可证分发。
+[官方网站](https://nginx.org)
 
 ```bash shell
 docker pull nginx:1.28.0
@@ -94,7 +105,12 @@ docker run --name nginx \
 
 ## 安装 Umami
 
-Umami 是一款开源、轻量的网站数据收集和分析平台
+Umami 是一款开源的、以隐私为重点的网络分析工具，可作为 Google Analytics 的替代品。它提供了对网站流量、用户行为和性能的重要要素，同时优先考虑数据隐私。
+[官方网站](https://umami.is)
+
+### 使用源码构建安装
+
+### 使用官方镜像安装
 
 ```bash shell
 docker pull docker.umami.is/umami-software/umami:postgresql-3.0.0
@@ -125,6 +141,9 @@ docker run --name umami \
 <网站> --> <编辑图标> --> <复制跟踪代码> --> <粘贴到网站的 head 标签下>
 
 ## 安装 NPS
+
+NPS 是一款轻量级、高性能、功能强大的内网穿透代理服务器
+[官方网站](https://ehang-io.github.io/nps)
 
 ```bash shell
 wget https://github.com/ehang-io/nps/releases/download/v0.26.10/linux_amd64_server.tar.gz
