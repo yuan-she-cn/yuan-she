@@ -5,6 +5,7 @@
 ## 安装 OpenSSH
 
 OpenSSH 是使用 SSH 协议进行远程登录的首选连接工具。它对所有流量进行加密，以消除窃听、连接劫持和其他攻击。此外，OpenSSH 还提供了一整套安全隧道功能、多种身份验证方法和复杂的配置选项。
+[官方网站](https://www.openssh.org)
 
 ```bash shell
 # 安装 OpenSSH
@@ -27,6 +28,7 @@ sudo systemctl enable ssh
 ## 安装 Docker
 
 Docker 是一款用于开发、发布和运行应用程序的开放平台。Docker 使您能够将应用程序与基础设施分开，以便快速交付软件。使用 Docker，您可以像管理应用程序一样管理基础设施。通过利用 Docker 的交付、测试和部署代码的方法，您可以显著减少编写代码和在生产中运行代码之间的延迟。
+[官方网站](https://www.docker.com)
 
 ```bash shell
 # 下载安装包
@@ -71,9 +73,10 @@ sudo systemctl restart docker
 
 ?> 镜像加速器地址由 [**王旭阳个人博客**](https://www.wxy97.com/archives/b5b225b6-7741-4560-be2f-2e6a4f671d9b) 提供
 
-## 安装 skopeo
+## 安装 Skopeo
 
-skopeo 是一款命令行实用程序，可以对容器映像和映像存储库执行各种操作。
+Skopeo 是一款命令行实用程序，可以对容器映像和映像存储库执行各种操作。
+[代码仓库](https://github.com/containers/skopeo)
 
 ```bash shell
 # 安装
@@ -87,6 +90,7 @@ skopeo list-tags docker://mcr.microsoft.com/mssql/server >> sqlserver.tag.txt
 ## 安装 Git
 
 Git 是一款免费开源的分布式版本控制系统，旨在快速高效地处理从小型到大型的所有项目。
+[官方网站](https://git-scm.com)
 
 ```bash shell
 # 安装 Git
@@ -99,6 +103,7 @@ git -v
 ## 安装 pnpm
 
 pnpm 是一款快速、节省磁盘空间的包管理器。
+[官方网站](https://pnpm.io)
 
 ```bash shell
 # 安装 pnpm
