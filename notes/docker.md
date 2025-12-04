@@ -44,6 +44,33 @@ docker restart postgres
 
 > 可以通过设置 **POSTGRES_PASSWORD** 参数修改密码
 
+## 安装 MySQL
+
+MySQL 是最流行的开源 SQL 数据库管理系统，由 Oracle 公司开发、分发和支持。
+[官方网站](https://www.mysql.com)
+
+```bash shell
+docker pull mysql:9.5.0
+sudo mkdir -p /home/mysql/data
+sudo mkdir -p /home/mysql/conf
+sudo mkdir -p /home/mysql/logs
+sudo chmod 777 /home/mysql/logs
+sudo vim /home/mysql/conf/mysql.cnf
+#[mysqld]
+#log-error = /var/log/mysql/error.log
+docker run --name mysql \
+--restart unless-stopped \
+--network network_1 \
+-e "MYSQL_ROOT_PASSWORD=x5T9T7tJwAtSrZIr" \
+-v /home/mysql/data:/var/lib/mysql \
+-v /home/mysql/conf:/etc/mysql/conf.d \
+-v /home/mysql/logs:/var/log/mysql \
+-p 3306:3306 \
+-d mysql:9.5.0
+```
+
+> 可以通过设置 **MYSQL_ROOT_PASSWORD** 参数修改密码
+
 ## 安装 SQL Server
 
 SQL Server 是一款关系数据库管理系统。应用程序和工具连接到 SQL Server 实例或数据库，并使用 Transact-SQL 进行通信。
@@ -128,6 +155,10 @@ docker run --name umami \
 
 ### 使用 Umami
 
+#### 默认用户
+
+用户：admin 密码：umami
+
 #### 设置语言
 
 <地球图标> --> <中文>
@@ -200,6 +231,9 @@ docker exec -it <ID/容器名> /bin/bash
 
 # 构建镜像
 docker build -t <镜像名> <构建目录>
+
+# 从容器中复制文件
+docker cp <ID/容器名>:<文件名> <文件名>
 ```
 
 ## Dockerfile 指令
