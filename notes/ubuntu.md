@@ -2,6 +2,31 @@
 
 以下示例均在 Ubuntu 24.04.3 LTS 测试通过。
 
+## 配置静态 IP
+
+配置静态 IP 可为你的设备在网络中设置一个永久、固定的地址，让其他设备能稳定可靠地找到并访问它。
+
+```bash shell
+sudo vi /etc/netplan/<数字>-<字符串>.yaml
+#network:
+#  ethernets:
+#    <网络接口>:
+#      dhcp4: false
+#      addresses:
+#        - 192.168.1.100/24
+#      routes:
+#        - to: default
+#          via: 192.168.1.1
+#      nameservers:
+#        addresses: [8.8.8.8, 114.114.114.114]
+#  version: 2
+sudo netplan apply
+```
+
+> <数字> 越大，优先级越高  
+> <字符串> 为配置描述  
+> <网络接口> 可以使用 ip addr 命令查询
+
 ## 安装 OpenSSH
 
 OpenSSH 是使用 SSH 协议进行远程登录的首选连接工具。它对所有流量进行加密，以消除窃听、连接劫持和其他攻击。此外，OpenSSH 还提供了一整套安全隧道功能、多种身份验证方法和复杂的配置选项。
