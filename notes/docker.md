@@ -137,6 +137,20 @@ Umami 是一款开源的、以隐私为重点的网络分析工具，可作为 G
 
 ### 使用源码构建安装
 
+```bash shell
+git clone https://github.com/umami-software/umami.git
+cd umami
+git checkout v3.0.0
+docker build --build-arg BASE_PATH=/umami -t umami:3.0.0 .
+docker run --name umami \
+--restart unless-stopped \
+--network network_1 \
+-e "APP_SECRET=aITsO5HUSdbgTGK3" \
+-e "DATABASE_URL=postgresql://postgres:x5T9T7tJwAtSrZIr@postgres:5432/umami" \
+-p 3000:3000 \
+-d umami:3.0.0
+```
+
 ### 使用官方镜像安装
 
 ```bash shell
@@ -145,13 +159,14 @@ docker run --name umami \
 --restart unless-stopped \
 --network network_1 \
 -e "APP_SECRET=aITsO5HUSdbgTGK3" \
--e "DATABASE_TYPE=postgresql" \
 -e "DATABASE_URL=postgresql://postgres:x5T9T7tJwAtSrZIr@postgres:5432/umami" \
 -p 3000:3000 \
 -d docker.umami.is/umami-software/umami:postgresql-3.0.0
 ```
 
-> APP_SECRET 为随机字符串
+> BASE_PATH 为 URL 前缀，只在构建时生效  
+> APP_SECRET 为随机字符串  
+> DATABASE_URL 为数据库连接，唯一必须的变量
 
 ### 使用 Umami
 
