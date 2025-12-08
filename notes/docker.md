@@ -186,6 +186,10 @@ docker run --name umami \
 
 <网站> --> <编辑图标> --> <复制跟踪代码> --> <粘贴到网站的 head 标签下>
 
+#### 排除访问记录
+
+F12 --> Console --> localStorage.setItem("umami.disabled", 1);
+
 ## 安装 NPS
 
 NPS 是一款轻量级、高性能、功能强大的内网穿透代理服务器
