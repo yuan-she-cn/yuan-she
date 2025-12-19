@@ -106,7 +106,7 @@
     <img class="logo" src="https://labs.mysql.com/common/logos/mysql-logo.svg?v2" />
     <div class="name">MySQL</div>
     <div class="info">
-      <a target="_blank" href="https://mysql.com/">官方网站</a>
+      <a target="_blank" href="https://mysql.com">官方网站</a>
     </div>
   </div>
   <div class="site">
@@ -165,6 +165,176 @@
       <a target="_blank" href="https://mariadb.org">官方网站</a>
     </div>
   </div>
+  <div class="site">
+    <img class="logo" src="https://hbase.apache.org/images/logo.svg" />
+    <div class="name">HBase</div>
+    <div class="info">
+      <a target="_blank" href="https://hbase.apache.org">官方网站</a>
+    </div>
+  </div>
+</div>
+
+## Java 技术栈
+
+<div class="sites">
+  <div class="site">
+    <img class="logo" style="background-color: #3a75b0; padding: 8px;" src="https://java.com/jcom/images/Java-horz-wht.svg" />
+    <div class="name">Java</div>
+    <div class="info">
+      <a target="_blank" href="https://oracle.com/java">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://maven.apache.org/images/maven-logo-black-on-white.png" />
+    <div class="name">Maven</div>
+    <div class="info">
+      <a target="_blank" href="https://maven.apache.org">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://cookbook.gradle.org/assets/images/logos/gradle.svg" />
+    <div class="name">Gradle</div>
+    <div class="info">
+      <a target="_blank" href="https://gradle.org">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <svg class="logo" fill="none" viewBox="0 0 64 64"><defs><linearGradient id="__JETBRAINS_COM__LOGO_PREFIX__1" x1="-0.391" x2="24.392" y1="7.671" y2="61.126" gradientUnits="userSpaceOnUse"><stop offset="0.1" stop-color="#FC801D"></stop><stop offset="0.59" stop-color="#FE2857"></stop></linearGradient><linearGradient id="__JETBRAINS_COM__LOGO_PREFIX__0" x1="4.325" x2="62.921" y1="59.932" y2="1.336" gradientUnits="userSpaceOnUse"><stop offset="0.21" stop-color="#FE2857"></stop><stop offset="0.7" stop-color="#007EFF"></stop></linearGradient></defs><path fill="#FF8100" d="M16.45 6H4.191a4.125 4.125 0 0 0-4.124 4.19l.176 11.044a4.125 4.125 0 0 0 1.44 3.066l38.159 32.707c.747.64 1.7.993 2.684.993h11.35A4.125 4.125 0 0 0 58 53.875V42.872c0-1.19-.514-2.321-1.41-3.105L19.167 7.021A4.123 4.123 0 0 0 16.45 6Z"></path><path fill="url(#__JETBRAINS_COM__LOGO_PREFIX__1)" d="M14.988 6H4.125A4.125 4.125 0 0 0 0 10.125v12.566c0 .2.014.4.044.598l5.448 37.185A4.125 4.125 0 0 0 9.573 64h15.398a4.125 4.125 0 0 0 4.125-4.127L29.09 41.37c0-.426-.066-.849-.195-1.254l-9.98-31.245A4.126 4.126 0 0 0 14.988 6Z"></path><path fill="url(#__JETBRAINS_COM__LOGO_PREFIX__0)" d="M59.876 0H25.748a4.125 4.125 0 0 0-3.8 2.52L6.151 39.943a4.118 4.118 0 0 0-.325 1.638l.15 18.329A4.125 4.125 0 0 0 10.101 64h17.666c.806 0 1.593-.236 2.266-.678l32.11-21.109A4.123 4.123 0 0 0 64 38.766V4.125A4.125 4.125 0 0 0 59.876 0Z"></path><path fill="#000" d="M52 12H12v40h40V12Z"></path><path fill="#fff" d="M33 44H17v3h16v-3ZM17 29.383h2.98v-9.775H17v-2.616h8.843v2.616h-2.98v9.775h2.98V32H17v-2.616Zm10.643-.085h2.154a2.38 2.38 0 0 0 1.163-.279c.34-.186.602-.448.788-.788.186-.34.279-.727.279-1.163V16.992h2.926v10.28c0 .9-.207 1.709-.622 2.427a4.45 4.45 0 0 1-1.715 1.688c-.728.408-1.546.611-2.454.611h-2.519v-2.7Z"></path></svg>
+    <div class="name">IntelliJ IDEA</div>
+    <div class="info">
+      <a target="_blank" href="https://jetbrains.com/idea">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" style="background-color: #000000; padding: 8px;" src="https://eclipse.org/eclipse.org-common/themes/solstice/public/images/logo/eclipse-foundation-white-orange.svg" />
+    <div class="name">Eclipse</div>
+    <div class="info">
+      <a target="_blank" href="https://eclipse.org">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://assets-eu-01.kc-usercontent.com/55017e37-262d-017b-afd6-daa9468cbc30/8e59bcad-6e39-41dc-abd9-a0e251e8d63f/Sonar%20%282%29.svg" />
+    <div class="name">SonarQube</div>
+    <div class="info">
+      <a target="_blank" href="https://sonarsource.com/products/sonarqube">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://checkstyle.sourceforge.io/images/header-checkstyle-logo.png" />
+    <div class="name">Checkstyle</div>
+    <div class="info">
+      <a target="_blank" href="https://checkstyle.sourceforge.io">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://docs.spring.io/spring-framework/reference/_/img/spring-logo.svg" />
+    <div class="name-medium">Spring Framework</div>
+    <div class="info">
+      <a target="_blank" href="https://docs.spring.io/spring-framework/reference/index.html">官方文档</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://docs.spring.io/spring-framework/reference/_/img/spring-logo.svg" />
+    <div class="name">Spring Boot</div>
+    <div class="info">
+      <a target="_blank" href="https://docs.spring.io/spring-boot/index.html">官方文档</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://sca.aliyun.com/sca-icon.svg" />
+    <div class="name-tiny">Spring Cloud Alibaba</div>
+    <div class="info">
+      <a target="_blank" href="https://sca.aliyun.com">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://mybatis.org/images/mybatis-logo.png" />
+    <div class="name">MyBatis</div>
+    <div class="info">
+      <a target="_blank" href="https://mybatis.org/mybatis-3">MyBatis</a>
+      <a target="_blank" href="https://baomidou.com">MyBatis-Plus</a>
+      <a target="_blank" href="https://mybatis-flex.com">MyBatis-Flex</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://hibernate.org/images/hibernate-logo.svg" />
+    <div class="name">Hibernate</div>
+    <div class="info">
+      <a target="_blank" href="https://hibernate.org">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://hutool.cn/images/hutool.svg" />
+    <div class="name">Hutool</div>
+    <div class="info">
+      <a target="_blank" href="https://hutool.cn">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://netty.io/images/logo.png" />
+    <div class="name">Netty</div>
+    <div class="info">
+      <a target="_blank" href="https://netty.io">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <div class="logo-text">Druid</div>
+    <div class="name">Druid</div>
+    <div class="info">
+      <a target="_blank" href="https://github.com/alibaba/druid/wiki">官方文档</a>
+    </div>
+  </div>
+  <div class="site">
+    <div class="logo-text">HikariCP</div>
+    <div class="name">HikariCP</div>
+    <div class="info">
+      <a target="_blank" href="https://github.com/brettwooldridge/HikariCP/wiki">官方文档</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" style="background-color: #0c0c2c; padding: 8px;" src="https://rocketmq.apache.org/img/Apache_RocketMQ_logo.svg.png" />
+    <div class="name">RocketMQ</div>
+    <div class="info">
+      <a target="_blank" href="https://rocketmq.apache.org">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://kafka.apache.org/logos/kafka_logo--simple.png" />
+    <div class="name">Kafka</div>
+    <div class="info">
+      <a target="_blank" href="https://kafka.apache.org">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <div class="logo">
+      <img style="height: 80px; max-width: 300px;" src="https://rabbitmq.com/img/rabbitmq-logo-by-tanzu.svg" />
+    </div>
+    <div class="name">RabbitMQ</div>
+    <div class="info">
+      <a target="_blank" href="https://rabbitmq.com">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://cn.dubbo.apache.org/imgs/nav_logo2.png" />
+    <div class="name">Dubbo</div>
+    <div class="info">
+      <a target="_blank" href="https://dubbo.apache.org">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" style="background-color: #244c5a; padding: 8px;" src="https://grpc.io/img/logos/grpc-logo.png" />
+    <div class="name">gRPC</div>
+    <div class="info">
+      <a target="_blank" href="https://grpc.io">官方网站</a>
+    </div>
+  </div>
+  <div class="site">
+    <img class="logo" src="https://git-scm.com/images/logo@2x.png" />
+    <div class="name">Git</div>
+    <div class="info">
+      <a target="_blank" href="https://git-scm.com">官方网站</a>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -194,10 +364,38 @@
     object-fit: contain;
     align-self: center;
     margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .logo-text {
+    height: 80px;
+    align-self: center;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 700;
   }
   .name {
     height: 40px;
     font-size: 24px;
+    font-weight: 600;
+    color: #34495e;
+  }
+  .name-medium {
+    height: 40px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #34495e;
+  }
+  .name-small {
+    height: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #34495e;
+  }
+  .name-tiny {
+    height: 40px;
+    font-size: 18px;
     font-weight: 600;
     color: #34495e;
   }
