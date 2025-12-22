@@ -74,9 +74,24 @@ docker restart postgres
 
 ```bash shell
 docker exec -it postgres /bin/bash
-pg_dump -U postgres postgres > postgres.sql
+# 备份数据库，语法：pg_dump -U 用户 -h 主机地址 -p 端口 数据库名 > 脚本文件.sql
+pg_dump -U postgres <数据库名> > <脚本文件>.sql
 exit
-docker cp postgres:postgres.sql postgres.sql
+docker cp postgres:<脚本文件>.sql <脚本文件>.sql
+```
+
+#### 还原数据库
+
+```bash shell
+docker cp <脚本文件>.sql postgres:<脚本文件>.sql
+docker exec -it postgres /bin/bash
+# 创建用户与数据库
+psql -U postgres
+CREATE USER <用户> WITH PASSWORD '<密码>' LOGIN;
+CREATE DATABASE <数据库名> OWNER = <用户> ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8' TEMPLATE = template0 IS_TEMPLATE = false;
+EXIT;
+# 还原数据库，语法：psql -U 用户 -h 主机地址 -p 端口 -d 数据库名 -f 脚本文件.sql
+psql -U postgres -d <数据库名> -f <脚本文件>.sql
 ```
 
 ## 安装 MySQL
