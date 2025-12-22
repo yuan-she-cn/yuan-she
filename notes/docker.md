@@ -44,6 +44,41 @@ docker restart postgres
 
 > 可以通过设置 **POSTGRES_PASSWORD** 参数修改密码
 
+### 使用 PostgreSQL
+
+#### 修改密码
+
+```bash shell
+# 修改认证方法为 trust
+docker exec -it postgres /bin/bash
+apt update
+apt install -y vim
+vim /var/lib/postgresql/18/docker/pg_hba.conf
+## 将认证方法 md5 或 scram-sha-256 改为 trust
+#local all all   trust
+exit
+docker restart postgres
+# 修改密码
+docker exec -it postgres /bin/bash
+psql -U postgres
+ALTER USER postgres WITH PASSWORD 'hncz1W4lJr0UOyZb';
+EXIT;
+vim /var/lib/postgresql/18/docker/pg_hba.conf
+## 将认证方法 trust 改回 md5 或 scram-sha-256
+# local all all   scram-sha-256
+exit
+docker restart postgres
+```
+
+#### 备份数据库
+
+```bash shell
+docker exec -it postgres /bin/bash
+pg_dump -U postgres postgres > postgres.sql
+exit
+docker cp postgres:postgres.sql postgres.sql
+```
+
 ## 安装 MySQL
 
 MySQL 是最流行的开源 SQL 数据库管理系统，由 Oracle 公司开发、分发和支持。
