@@ -303,6 +303,11 @@ docker build -t <镜像名> <构建目录>
 
 # 从容器中复制文件
 docker cp <ID/容器名>:<文件名> <文件名>
+
+# 查看容器占用资源情况
+docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}\t{{.BlockIO}}"
+# 限制容器占用资源
+docker update --cpus="1.0" --memory="256m" --memory-swap="512m" <ID/容器名>
 ```
 
 ## Dockerfile 指令
