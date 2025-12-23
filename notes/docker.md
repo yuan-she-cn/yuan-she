@@ -25,7 +25,6 @@ sudo mkdir -p /home/postgres/logs
 sudo chmod 777 /home/postgres/logs
 docker run --name postgres \
 --restart unless-stopped \
---network network_1 \
 -e "POSTGRES_PASSWORD=x5T9T7tJwAtSrZIr" \
 -e "TZ=Asia/Shanghai" \
 -v /home/postgres/data:/var/lib/postgresql/18/docker \
@@ -110,7 +109,6 @@ sudo vim /home/mysql/conf/mysql.cnf
 #log-error = /var/log/mysql/error.log
 docker run --name mysql \
 --restart unless-stopped \
---network network_1 \
 -e "MYSQL_ROOT_PASSWORD=x5T9T7tJwAtSrZIr" \
 -v /home/mysql/data:/var/lib/mysql \
 -v /home/mysql/conf:/etc/mysql/conf.d \
@@ -131,7 +129,6 @@ docker pull mcr.microsoft.com/mssql/server:2017-latest
 sudo mkdir -p /home/sqlserver
 docker run --name sqlserver \
 --restart unless-stopped \
---network network_1 \
 -e "ACCEPT_EULA=Y" \
 -e "MSSQL_SA_PASSWORD=x5T9T7tJwAtSrZIr" \
 -v /home/sqlserver:/var/opt/mssql \
@@ -170,7 +167,6 @@ sudo vim /home/nginx/html/index.html
 #</html>
 docker run --name nginx \
 --restart unless-stopped \
---network network_1 \
 -v /home/nginx/conf:/etc/nginx/conf.d \
 -v /home/nginx/logs:/var/log/nginx \
 -v /home/nginx/html:/usr/nginx/html \
@@ -194,7 +190,6 @@ git checkout v3.0.0
 docker build --build-arg BASE_PATH=/umami -t umami:3.0.0 .
 docker run --name umami \
 --restart unless-stopped \
---network network_1 \
 -e "APP_SECRET=aITsO5HUSdbgTGK3" \
 -e "DATABASE_URL=postgresql://postgres:x5T9T7tJwAtSrZIr@postgres:5432/umami" \
 -p 3000:3000 \
@@ -207,7 +202,6 @@ docker run --name umami \
 docker pull docker.umami.is/umami-software/umami:postgresql-3.0.0
 docker run --name umami \
 --restart unless-stopped \
---network network_1 \
 -e "APP_SECRET=aITsO5HUSdbgTGK3" \
 -e "DATABASE_URL=postgresql://postgres:x5T9T7tJwAtSrZIr@postgres:5432/umami" \
 -p 3000:3000 \
@@ -269,7 +263,6 @@ vim Dockerfile
 docker build -t nps:0.26 .
 docker run --name nps \
 --restart unless-stopped \
---network network_1 \
 -v /home/nps/conf:/etc/nps/conf \
 -v /home/nps/logs/nps.log:/var/log/nps.log \
 -p 8080:8080 \
