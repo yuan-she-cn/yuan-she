@@ -142,3 +142,14 @@ pnpm env use --global 22.19.0
 ```
 
 !> 使用 source 命令时，需要更换为相应的用户目录
+
+## 常见问题
+
+### Dependency is not satisfiable: libgconf-2-4
+
+```bash shell
+wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gconf/gconf2-common_3.2.6-7ubuntu2_all.deb
+wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gconf/libgconf-2-4_3.2.6-7ubuntu2_amd64.deb
+sudo dpkg -i gconf2-common_3.2.6-7ubuntu2_all.deb
+sudo dpkg -i libgconf-2-4_3.2.6-7ubuntu2_amd64.deb
+```
