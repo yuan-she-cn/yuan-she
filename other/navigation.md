@@ -310,6 +310,7 @@
     <div class="name">Kafka</div>
     <div class="info">
       <a target="_blank" href="https://kafka.apache.org">官方网站</a>
+      <a target="_blank" href="https://github.com/provectus/kafka-ui">kafka-ui</a>
     </div>
   </div>
   <div class="site">
