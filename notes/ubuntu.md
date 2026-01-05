@@ -143,6 +143,15 @@ pnpm env use --global 22.19.0
 
 !> 使用 source 命令时，需要更换为相应的用户目录
 
+## 常用命令
+
+```bash shell
+# 查看磁盘使用情况
+df -hT
+# 查看目录使用情况
+du -h / -d 1 | sort -hr
+```
+
 ## 常见问题
 
 ### Dependency is not satisfiable: libgconf-2-4
