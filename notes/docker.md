@@ -138,6 +138,19 @@ docker run --name sqlserver \
 
 > 可以通过设置 **MSSQL_SA_PASSWORD** 参数修改密码
 
+## 安装 Redis
+
+```bash shell
+docker pull redis:8.4.0
+docker run --name redis \
+--restart unless-stopped \
+-p 6379:6379 \
+-d redis:8.4.0 \
+redis-server --requirepass "x5T9T7tJwAtSrZIr"
+```
+
+> 可以通过设置 **requirepass** 参数修改密码
+
 ## 安装 Nginx
 
 Nginx 是一款 HTTP web 服务器、反向代理、内容缓存、负载均衡器、TCP/UDP 代理服务器和邮件代理服务器。最初由 Igor Sysoev 编写，并以 2-clause BSD 许可证分发。
