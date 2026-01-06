@@ -140,6 +140,9 @@ docker run --name sqlserver \
 
 ## 安装 Redis
 
+Redis 可用作数据库、缓存、流式处理引擎、消息代理等。
+[官方网站](https://redis.io)
+
 ```bash shell
 docker pull redis:8.4.0
 docker run --name redis \
