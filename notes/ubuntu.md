@@ -143,6 +143,21 @@ pnpm env use --global 22.19.0
 
 !> 使用 source 命令时，需要更换为相应的用户目录
 
+## 定时任务
+
+```bash shell
+sudo vim /usr/local/bin/clean-logs.sh
+##!/bin/bash
+## 删除前一周文件
+#find /var/log -name "*.log" -mtime +6 -exec rm -f {} \;
+sudo chmod +x /usr/local/bin/clean-logs.sh
+sudo crontab -e
+## 每天 00:00 执行
+#0 0 * * * /usr/local/bin/clean-logs.sh
+## 每 5 分钟执行
+#0-59/5 * * * * /usr/local/bin/clean-logs.sh
+```
+
 ## 常用命令
 
 ```bash shell
