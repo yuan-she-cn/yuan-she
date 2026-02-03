@@ -125,6 +125,52 @@ sudo apt install -y git
 git -v
 ```
 
+## 安装 Java
+
+```bash shell
+# 安装 Java
+wget https://download.oracle.com/java/17/archive/jdk-17.0.11_linux-x64_bin.tar.gz
+sudo tar -zxvf jdk-17.0.11_linux-x64_bin.tar.gz -C /usr/local/lib/
+vim ~/.profile
+## 文件追加
+#JAVA_HOME=/usr/local/lib/jdk-17.0.11
+#PATH=$PATH:$JAVA_HOME/bin
+#CLASSPATH=.:$JAVA_HOME/lib
+#export JAVA_HOME PATH CLASSPATH
+source ~/.profile
+
+# 查看 Java 版本
+java -version
+```
+
+## 安装 Maven
+
+```bash shell
+# 安装 Maven
+wget https://dlcdn.apache.org/maven/maven-3/3.9.12/binaries/apache-maven-3.9.12-bin.tar.gz
+sudo tar -zxvf apache-maven-3.9.12-bin.tar.gz -C /usr/local/lib/
+sudo mkdir -p /var/local/maven/repo
+sudo chmod -R 777 /var/local/maven
+sudo vim /usr/local/lib/apache-maven-3.9.12/conf/settings.xml
+## settings 标签加入
+#  <localRepository>/var/local/maven/repo</localRepository>
+## mirrors 标签加入
+#    <mirror>
+#      <id>nexus-aliyun</id>
+#      <mirrorOf>central</mirrorOf>
+#      <name>Nexus aliyun</name>
+#      <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+#    </mirror>
+vim ~/.profile
+## 文件追加
+#PATH=$PATH:/usr/local/lib/apache-maven-3.9.12/bin
+#export PATH
+source ~/.profile
+
+# 查看 Maven 版本
+mvn -v
+```
+
 ## 安装 pnpm
 
 pnpm 是一款快速、节省磁盘空间的包管理器。
