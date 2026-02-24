@@ -223,3 +223,25 @@ wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gconf/libgconf-2-4_3.2.6-7
 sudo dpkg -i gconf2-common_3.2.6-7ubuntu2_all.deb
 sudo dpkg -i libgconf-2-4_3.2.6-7ubuntu2_amd64.deb
 ```
+
+### KERNEL PANIC!
+
+1. 重启
+2. 选择 Advanced options for Ubuntu
+3. 选择旧版内核启动，不带 (recovery mode)
+
+```bash shell
+# 查看当前内核版本
+uname -a
+# 查看所有内核版本，iF 为损坏内核，ii 为正常内核，rc 为已被卸载内核。
+dpkg --list | grep linux-image
+# 卸载损坏内核
+sudo apt-get purge <内核名>
+sudo apt-get purge <内核头文件-上个命令输出>
+sudo apt-get install -f
+sudo apt-get autoremove
+# 更新引导菜单
+sudo update-grub
+# 重启
+sudo reboot
+```
