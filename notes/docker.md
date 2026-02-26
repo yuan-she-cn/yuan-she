@@ -192,6 +192,35 @@ docker run --name nginx \
 -d nginx:1.28.0
 ```
 
+## 安装 GitLab
+
+```bash shell
+# 安装 GitLab
+docker pull gitlab/gitlab-ce:18.8.2-ce.0
+sudo mkdir -p /home/gitlab/data
+sudo mkdir -p /home/gitlab/conf
+sudo mkdir -p /home/gitlab/logs
+docker run --name gitlab \
+--restart unless-stopped \
+--hostname 127.0.0.1 \
+-e "GITLAB_OMNIBUS_CONFIG=external_url 'http://127.0.0.1/gitlab'" \
+-v /home/gitlab/data:/var/opt/gitlab \
+-v /home/gitlab/conf:/etc/gitlab \
+-v /home/gitlab/logs:/var/log/gitlab \
+-p 80:80 \
+-p 443:443 \
+-p 2222:22 \
+-d gitlab/gitlab-ce:18.8.2-ce.0
+
+# 查看 root 密码，24 小时自动删除
+docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
+```
+
+> 需要根据实际情况设置 **hostname** 参数，修改容器的主机名  
+> 需要根据实际情况设置 **external_url** 参数，修改公开访问地址
+
+> !> SSH 尚未配置
+
 ## 安装 Umami
 
 Umami 是一款开源的、以隐私为重点的网络分析工具，可作为 Google Analytics 的替代品。它提供了对网站流量、用户行为和性能的重要要素，同时优先考虑数据隐私。
@@ -329,3 +358,30 @@ docker update --cpus="1.0" --memory="256m" --memory-swap="512m" <ID/容器名>
 | ADD     | 类似 COPY，但可解压  | ADD ./\*.tar.gz /app  |
 | RUN     | 构建镜像时执行的命令 | RUN apt update        |
 | CMD     | 容器启动时执行的命令 | CMD ["apt", "update"] |
+
+## 常见问题
+
+### 修改容器时区
+
+```bash shell
+# 进入容器
+docker exec -it <ID/容器名> /bin/bash
+# 或
+docker exec -it -u root <ID/容器名> /bin/sh
+
+# 检查是否存在时区文件
+ls -la /usr/share/zoneinfo/Asia/Shanghai
+# 如果不存在时区文件
+cat /etc/os-release
+# 安装 tzdata (Alpine Linux)
+apk add --no-cache tzdata
+# 或 (Debian/Ubuntu)
+apt update && apt install -y tzdata
+
+# 修改时区
+date
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+echo "Asia/Shanghai" > /etc/timezone
+date
+# 中国标准时间 SCT，例如：Thu Feb 26 14:56:16 CST 2026
+```
