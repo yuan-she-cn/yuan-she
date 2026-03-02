@@ -204,6 +204,27 @@ sudo crontab -e
 #0-59/5 * * * * /usr/local/bin/clean-logs.sh
 ```
 
+## 分区与格式化硬盘（U盘）
+
+```bash shell
+# 查看磁盘信息
+sudo fdisk -l | grep /dev/s
+
+# 卸载分区（分区名：/dev/sdb1）
+umount <分区名>
+
+# 分区磁盘（磁盘名：/dev/sdb）
+sudo fdisk <磁盘名>
+# p 查看分区
+# d 删除分区
+# n 新建分区
+# p 新建主分区
+# w 确认更改
+
+# 格式化分区
+sudo mkfs.vfat -F 32 <分区名>
+```
+
 ## 常用命令
 
 ```bash shell
