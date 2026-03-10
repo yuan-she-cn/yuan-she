@@ -219,7 +219,7 @@ docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 > 需要根据实际情况设置 **hostname** 参数，修改容器的主机名  
 > 需要根据实际情况设置 **external_url** 参数，修改公开访问地址
 
-> !> SSH 尚未配置
+!> SSH 尚未配置
 
 ## 安装 Umami
 
@@ -318,6 +318,23 @@ docker run --name nps \
 > 默认用户名和密码：admin/123
 
 !> 容器重启时，nps 服务可能不能正常启动，可执行 **docker exec nps nps start** 手动启动。
+
+## 安装迅雷（NAS版）
+
+```bash shell
+docker pull cnk3x/xunlei:latest
+sudo mkdir -p /home/xunlei/data
+sudo chmod 777 /home/xunlei/data
+docker run --name xunlei \
+--restart unless-stopped \
+--cap-add=SYS_ADMIN \
+--security-opt apparmor:unconfined \
+-v /home/xunlei/data:/xunlei/downloads \
+-p 2345:2345 \
+-d cnk3x/xunlei:latest
+```
+
+> 邀请码：迅雷牛通
 
 ## 常用命令
 
