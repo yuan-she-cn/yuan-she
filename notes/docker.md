@@ -2,6 +2,40 @@
 
 以下示例均在 Docker version 28.5.1 测试通过。
 
+## 在 Windows 安装
+
+以下示例在 Windows Server 2019 测试通过
+
+1. [下载安装包](https://download.docker.com/win/static/stable/x86_64/docker-28.5.1.zip)
+2. 解压 docker-28.5.1.zip 到 C:\Program Files
+3. PATH 变量添加 C:\Program Files\docker
+4. 创建配置文件 C:\ProgramData\docker\config\daemon.json
+
+```daemon.json
+{
+  "registry-mirrors": ["https://hub.rat.dev"]
+}
+```
+
+5. 注册服务（需要管理员权限）
+
+```管理员：PowerShell
+dockerd.exe --register-service
+```
+
+6. 开启容器支持（需要管理员权限）
+
+```管理员：PowerShell
+Install-WindowsFeature -Name Containers
+Restart-Computer -Force
+```
+
+7. 启动服务（需要管理员权限）
+
+```管理员：PowerShell
+Start-Service docker
+```
+
 ## 创建桥接网络
 
 Docker 桥接网络是 Docker 创建的虚拟网络接口，它在宿主机内部创建一个虚拟交换机，让容器可以通过这个交换机相互通信。
