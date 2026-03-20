@@ -183,6 +183,8 @@ source /home/ubuntu/.bashrc
 
 # 查看 pnpm 版本
 pnpm -v
+# 更新 pnpm 版本
+pnpm self-update <版本>
 # 安装并使用指定 Node.js 版本
 pnpm env use --global 22.19.0
 ```
