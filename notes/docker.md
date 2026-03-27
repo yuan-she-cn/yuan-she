@@ -255,6 +255,26 @@ docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 
 !> SSH 尚未配置
 
+## 安装 Gitea
+
+Gitea 是一个轻量级的 DevOps 平台软件。从开发计划到产品成型的整个软件生命周期，他都能够高效而轻松的帮助团队和开发者。包括 Git 托管、代码审查、团队协作、软件包注册和 CI/CD。
+[官方网站](https://about.gitea.com)
+
+```bash shell
+docker pull docker.gitea.com/gitea:1.25.5
+sudo mkdir -p /home/gitea/data
+sudo chmod 777 /home/gitea/data
+docker run --name gitea \
+--restart unless-stopped \
+-e "TZ=Asia/Shanghai" \
+-v /home/gitea/data:/data \
+-p 3000:3000 \
+-d docker.gitea.com/gitea:1.25.5
+```
+
+> 配置文件：/data/gitea/conf/app.ini  
+> 可以根据实际情况设置 **DISABLE_REGISTRATION** 参数，禁用注册
+
 ## 安装 Umami
 
 Umami 是一款开源的、以隐私为重点的网络分析工具，可作为 Google Analytics 的替代品。它提供了对网站流量、用户行为和性能的重要要素，同时优先考虑数据隐私。
