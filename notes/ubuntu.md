@@ -191,6 +191,15 @@ pnpm env use --global 22.19.0
 
 !> 使用 source 命令时，需要更换为相应的用户目录
 
+## 卸载 deb 包
+
+```bash shell
+# 查看 deb 包
+dpkg -l | grep <包名>
+# 卸载 deb 包，保留配置文件
+sudo apt remove <包名>
+```
+
 ## 定时任务
 
 ```bash shell
