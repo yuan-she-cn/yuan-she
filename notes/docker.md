@@ -338,6 +338,8 @@ F12 --> Console --> localStorage.setItem("umami.disabled", 1);
 NPS 是一款轻量级、高性能、功能强大的内网穿透代理服务器
 [官方网站](https://ehang-io.github.io/nps)
 
+### 安装服务端
+
 ```bash shell
 wget https://github.com/ehang-io/nps/releases/download/v0.26.10/linux_amd64_server.tar.gz
 sudo mkdir -p /home/nps/conf
@@ -369,9 +371,24 @@ docker run --name nps \
 -d nps:0.26
 ```
 
-> 默认用户名和密码：admin/123
+> **8080** 为管理端口，**8024** 为通信端口  
+> 默认用户名和密码：admin/123，可在 **/home/nps/conf/nps.conf** 文件中修改 **web_username** 和 **web_password** 属性
 
 !> 容器重启时，nps 服务可能不能正常启动，可执行 **docker exec nps nps start** 手动启动。
+
+### 安装客户端
+
+```bash shell
+wget https://github.com/ehang-io/nps/releases/download/v0.26.10/linux_amd64_client.tar.gz
+sudo mkdir /services/npc-0.26.10
+sudo tar -zxvf linux_amd64_client.tar.gz -C /services/npc-0.26.10/
+cd /services/npc-0.26.10
+sudo ./npc install -server=<主机>:<端口> -vkey=<密钥>
+sudo npc start
+
+# 卸载
+sudo ./npc uninstall
+```
 
 ## 安装迅雷（NAS版）
 
