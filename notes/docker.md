@@ -172,6 +172,26 @@ docker run --name sqlserver \
 
 > 可以通过设置 **MSSQL_SA_PASSWORD** 参数修改密码
 
+## 安装 MongoDB
+
+MongoDB是一种面向文档的可操作数据库，是作为现代应用程序关系数据库的替代方案而全新构建的。与关系数据库不同， MongoDB允许开发者存储丰富的类似JSON的文档，这些文档自然映射到他们在代码中使用的对象。
+[官方网站](https://www.mongodb.com)
+
+```bash shell
+docker pull mongodb/mongodb-community-server:8.2.6-ubuntu2204
+sudo mkdir -p /home/mongodb/data
+sudo chmod 777 /home/mongodb/data
+docker run --name mongodb \
+--restart unless-stopped \
+-e "MONGODB_INITDB_ROOT_USERNAME=root" \
+-e "MONGODB_INITDB_ROOT_PASSWORD=x5T9T7tJwAtSrZIr" \
+-v /home/mongodb/data:/data/db \
+-p 27017:27017 \
+-d mongodb/mongodb-community-server:8.2.6-ubuntu2204
+```
+
+> 可以通过设置 **MONGODB_INITDB_ROOT_USERNAME** 和 **MONGODB_INITDB_ROOT_PASSWORD** 参数修改用户和密码
+
 ## 安装 Redis
 
 Redis 可用作数据库、缓存、流式处理引擎、消息代理等。
