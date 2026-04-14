@@ -2,6 +2,26 @@
 
 以下示例均在 Ubuntu 24.04.3 LTS 测试通过。
 
+## 安装 Ubuntu
+
+![](../images/notes_ubuntu_1.png)
+![](../images/notes_ubuntu_2.png)
+![](../images/notes_ubuntu_3.png)
+![](../images/notes_ubuntu_4.png)
+![](../images/notes_ubuntu_5.png)
+![](../images/notes_ubuntu_6.png)
+![](../images/notes_ubuntu_7.png)
+![](../images/notes_ubuntu_8.png)
+![](../images/notes_ubuntu_9.png)
+![](../images/notes_ubuntu_10.png)
+![](../images/notes_ubuntu_11.png)
+![](../images/notes_ubuntu_12.png)
+![](../images/notes_ubuntu_13.png)
+![](../images/notes_ubuntu_14.png)
+![](../images/notes_ubuntu_15.png)
+![](../images/notes_ubuntu_16.png)
+![](../images/notes_ubuntu_17.png)
+
 ## 配置静态 IP
 
 配置静态 IP 可为你的设备在网络中设置一个永久、固定的地址，让其他设备能稳定可靠地找到并访问它。
