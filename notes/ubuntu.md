@@ -4,22 +4,72 @@
 
 ## 安装 Ubuntu
 
+选择 Try or Install Ubuntu Server，进入 Ubuntu 安装向导
+
 ![](../images/notes_ubuntu_1.png)
+
+选择 English，配置安装向导语言
+
 ![](../images/notes_ubuntu_2.png)
+
+选择 Continue without updating，不更新继续安装
+
 ![](../images/notes_ubuntu_3.png)
+
+配置键盘布局后，选择 Done 下一步
+
 ![](../images/notes_ubuntu_4.png)
+
+配置安装类型后，选择 Done 下一步
+
 ![](../images/notes_ubuntu_5.png)
+
+配置网络后，选择 Done 下一步
+
 ![](../images/notes_ubuntu_6.png)
+
+配置代理后（可不配置），选择 Done 下一步
+
 ![](../images/notes_ubuntu_7.png)
+
+配置镜像后（可不配置），选择 Done 下一步
+
 ![](../images/notes_ubuntu_8.png)
+
+配置磁盘后，选择 Done 下一步
+
 ![](../images/notes_ubuntu_9.png)
+
+配置挂载点后，选择 Done 下一步
+
 ![](../images/notes_ubuntu_10.png)
+
+选择 Continue，确认格式化磁盘继续安装
+
 ![](../images/notes_ubuntu_11.png)
+
+配置主机与用户信息后，选择 Done 下一步
+
 ![](../images/notes_ubuntu_12.png)
+
+确认是否升级到 Ubuntu Pro 后，选择 Continue 继续安装
+
 ![](../images/notes_ubuntu_13.png)
+
+配置 SSH 后（建议勾选 Install OpenSSH server 安装 OpenSSH），选择 Done 下一步
+
 ![](../images/notes_ubuntu_14.png)
+
+配置应用程序后，选择 Done 下一步
+
 ![](../images/notes_ubuntu_15.png)
+
+等待安装...
+
 ![](../images/notes_ubuntu_16.png)
+
+安装完成后，选择 Reboot Now 重启 Ubuntu
+
 ![](../images/notes_ubuntu_17.png)
 
 ## 配置静态 IP
