@@ -353,6 +353,25 @@ docker run --name umami \
 
 F12 --> Console --> localStorage.setItem("umami.disabled", 1);
 
+## 安装 Pritunl Zero
+
+Pritunl Zero 是一个零信任系统，它无需使用 VPN 即可从不受信任的网络,安全地经过身份验证访问内部服务。
+[官方网站](https://pritunl.com)
+
+```bash shell
+docker pull pritunl/pritunl-zero:1.0.3779.61
+docker run --name pritunl-zero \
+--restart unless-stopped \
+-e "NODE_ID=64e8f29c0a7d1b5e2f4680ac" \
+-e "MONGO_URI=mongodb://root:x5T9T7tJwAtSrZIr@mongodb:27017/pritunl-zero?authSource=admin" \
+-p 80:80 \
+-p 443:443 \
+-d pritunl/pritunl-zero:1.0.3779.61
+```
+
+> 参数 **NODE_ID** 必须是 24 位十六进制字符  
+> 默认用户在表 **users** 中查找
+
 ## 安装 NPS
 
 NPS 是一款轻量级、高性能、功能强大的内网穿透代理服务器
