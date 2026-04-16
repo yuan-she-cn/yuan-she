@@ -172,6 +172,70 @@ docker run --name sqlserver \
 
 > 可以通过设置 **MSSQL_SA_PASSWORD** 参数修改密码
 
+## 安装 Dameng
+
+100% 自主研发的大型通用关系型数据库，支持单机/主备、共享集群、分布式等多种部署方式，覆盖 OLAP/OLTP/HTAP 交易和分析混合负载场景，为用户提供具备极致兼容性、高可用性、高可靠性、高安全性及易用性的企业级数据库产品与服务。
+[官方网站](https://www.dameng.com)
+
+```bash shell
+sudo apt install -y p7zip-full
+wget https://download.dameng.com/eco/adapter/DM8/202604/dm8_20260401_x86_Ubuntu22_64.zip
+7z x ./dm8_20260401_x86_Ubuntu22_64.zip -o./dm8_20260401_x86_Ubuntu22_64
+7z x ./dm8_20260401_x86_Ubuntu22_64/dm8_20260401_x86_Ubuntu22_64.iso -o./dm8_20260401_x86_Ubuntu22_64
+vim ./dm8_20260401_x86_Ubuntu22_64/conf.xml
+#<?xml version="1.0"?>
+#<DATABASE>
+#  <LANGUAGE>en</LANGUAGE>
+#  <INSTALL_PATH>/home/dameng/dm8</INSTALL_PATH>
+#  <INIT_DB>y</INIT_DB>
+#  <DB_PARAMS>
+#    <PATH>/home/dameng/data</PATH>
+#    <SYSDBA_PWD>x5T9T7tJwAtSrZIr</SYSDBA_PWD>
+#    <SYSAUDITOR_PWD>x5T9T7tJwAtSrZIr</SYSAUDITOR_PWD>
+#  </DB_PARAMS>
+#  <CREATE_DB_SERVICE>n</CREATE_DB_SERVICE>
+#</DATABASE>
+vim ./Dockerfile
+#FROM ubuntu:22.04
+#WORKDIR /home/dameng
+#RUN groupadd dameng -g 1000
+#RUN useradd -g dameng -m -d /home/dameng -s /bin/bash -u 1000 dameng
+#RUN passwd -d dameng
+#RUN echo "dameng soft nice 0" >> /etc/security/limits.conf
+#RUN echo "dameng hard nice 0" >> /etc/security/limits.conf
+#RUN echo "dameng soft as unlimited" >> /etc/security/limits.conf
+#RUN echo "dameng hard as unlimited" >> /etc/security/limits.conf
+#RUN echo "dameng soft fsize unlimited" >> /etc/security/limits.conf
+#RUN echo "dameng hard fsize unlimited" >> /etc/security/limits.conf
+#RUN echo "dameng soft nproc 65536" >> /etc/security/limits.conf
+#RUN echo "dameng hard nproc 65536" >> /etc/security/limits.conf
+#RUN echo "dameng soft nofile 65536" >> /etc/security/limits.conf
+#RUN echo "dameng hard nofile 65536" >> /etc/security/limits.conf
+#RUN echo "dameng soft core unlimited" >> /etc/security/limits.conf
+#RUN echo "dameng hard core unlimited" >> /etc/security/limits.conf
+#RUN echo "dameng soft data unlimited" >> /etc/security/limits.conf
+#RUN echo "dameng hard data unlimited" >> /etc/security/limits.conf
+#COPY ./dm8_20260401_x86_Ubuntu22_64/DMInstall.bin /home/dameng/DMInstall.bin
+#COPY ./dm8_20260401_x86_Ubuntu22_64/conf.xml /home/dameng/conf.xml
+#RUN mkdir -p /home/dameng/dm8
+#RUN mkdir -p /home/dameng/data
+#RUN chown -R dameng:dameng /home/dameng
+#RUN chmod -R 755 /home/dameng
+#USER dameng
+#RUN /home/dameng/DMInstall.bin -q /home/dameng/conf.xml
+#USER root
+#RUN /home/dameng/dm8/script/root/root_installer.sh
+#RUN echo "export PATH=\$PATH:\$DM_HOME/bin:\$DM_HOME/tool" >> /home/dameng/.bash_profile
+#USER dameng
+#RUN . /home/dameng/.bash_profile
+#CMD ["/home/dameng/dm8/bin/dmserver", "/home/dameng/data/DAMENG/dm.ini"]
+docker build -t dameng:8-20260401 .
+docker run --name dameng \
+--restart unless-stopped \
+-p 5236:5236 \
+-d dameng:8-20260401
+```
+
 ## 安装 MongoDB
 
 MongoDB是一种面向文档的可操作数据库，是作为现代应用程序关系数据库的替代方案而全新构建的。与关系数据库不同， MongoDB允许开发者存储丰富的类似JSON的文档，这些文档自然映射到他们在代码中使用的对象。
