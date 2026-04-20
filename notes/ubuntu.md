@@ -347,3 +347,45 @@ sudo update-grub
 # 重启
 sudo reboot
 ```
+
+### 更新显卡驱动（解决花屏、纹理错乱问题）
+
+```bash shell
+# 查看显卡与驱动信息
+lspci -k | grep -A 2 -E "VGA|3D"
+# 例：
+# 01:00.0 VGA compatible controller: NVIDIA Corporation GK208B [GeForce GT 730] (rev a1)
+#         Subsystem: Bitland(ShenZhen) Information Technology Co., Ltd. GK208B [GeForce GT 730]
+#         Kernel driver in use: nouveau
+# 如果输出 Kernel driver in use: nouveau 则使用的是开源驱动，nouveau 针对老显卡可能会出现花屏、纹理错乱等问题
+# 此时可以询问 AI 正确的官方驱动
+# 如：NVIDIA Corporation GK208B [GeForce GT 730] (rev a1) 的 Ubuntu 官方驱动是什么？
+# 得到答案：nvidia-driver-470
+
+# 卸载驱动
+sudo apt purge -y nvidia* libnvidia*
+sudo apt autoremove -y
+sudo apt autoclean
+
+# 安装驱动
+sudo apt update
+sudo apt install -y build-essential dkms linux-headers-$(uname -r)
+sudo apt install -y nvidia-driver-470
+
+# 增加防撕裂配置（NVIDIA 适用）
+sudo mkdir -p /etc/X11/xorg.conf.d
+sudo vim /etc/X11/xorg.conf.d/20-nvidia-tearfree.conf
+#Section "Device"
+#  Identifier "NVIDIA Card"
+#  Driver "nvidia"
+#  Option "ForceFullCompositionPipeline" "On"
+#  Option "TearFree" "On"
+#EndSection
+
+# 重启
+sudo reboot
+
+# 应急措施
+# 新驱动可能安装失败或显示效果更差
+# 此时可以执行上面 卸载驱动 部分的命令，系统会默认使用之前的 nouveau 驱动
+```
