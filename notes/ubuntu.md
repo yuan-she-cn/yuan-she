@@ -261,6 +261,39 @@ pnpm env use --global 22.19.0
 
 !> 使用 source 命令时，需要更换为相应的用户目录
 
+## 安装 VirtualBox
+
+VirtualBox 是一款针对 x86_64 硬件的通用虚拟化软件，适用于笔记本电脑、台式机、服务器和嵌入式系统。
+[官方网站](https://www.virtualbox.org)
+
+```bash shell
+wget https://download.virtualbox.org/virtualbox/7.2.6/virtualbox-7.2_7.2.6-172322~Ubuntu~noble_amd64.deb
+sudo dpkg -i ./virtualbox-7.2_7.2.6-172322~Ubuntu~noble_amd64.deb
+sudo apt install -y -f
+# 如果主板开启 Secure Boot 请按以下操作
+# 选择 <OK>
+# 输入临时密码，选择 <OK>
+# 再次临时输入密码，选择 <OK>
+sudo dpkg --configure -a
+sudo reboot
+# 如果主板开启 Secure Boot 重启后请按以下操作
+# 依次选择 Enroll MOK -> Continue -> Yes
+# 输入临时密码
+# 选择 Reboot
+```
+
+### 问题解决：VirtualBox can't operate in VMX root mode.
+
+```bash shell
+# Intel CPU
+sudo modprobe -r kvm_intel
+sudo modprobe -r kvm
+
+# AMD CPU
+sudo modprobe -r kvm_amd
+sudo modprobe -r kvm
+```
+
 ## 卸载 deb 包
 
 ```bash shell
