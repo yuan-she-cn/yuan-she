@@ -359,6 +359,41 @@ docker run --name gitea \
 > 配置文件：/data/gitea/conf/app.ini  
 > 可以根据实际情况设置 **DISABLE_REGISTRATION** 参数，禁用注册
 
+## 安装 OpenProject
+
+```bash shell
+docker pull openproject/openproject:17.3.1-slim
+sudo mkdir -p /home/openproject/assets
+sudo chmod 777 /home/openproject/assets
+# 创建数据表
+docker run --rm \
+-e "SECRET_KEY_BASE=aITsO5HUSdbgTGK3" \
+-e "DATABASE_URL=postgresql://postgres:x5T9T7tJwAtSrZIr@postgres:5432/openproject" \
+-e "OPENPROJECT_DEFAULT__LANGUAGE=zh-CN" \
+openproject/openproject:17.3.1-slim \
+bundle exec rails db:migrate RAILS_ENV=production
+# 创建管理员
+docker run --rm \
+-e "SECRET_KEY_BASE=aITsO5HUSdbgTGK3" \
+-e "DATABASE_URL=postgresql://postgres:x5T9T7tJwAtSrZIr@postgres:5432/openproject" \
+-e "OPENPROJECT_DEFAULT__LANGUAGE=zh-CN" \
+openproject/openproject:17.3.1-slim \
+bundle exec rails runner "user = User.create(login: 'admin', password: 'x5T9T7tJwAtSrZIr', password_confirmation: 'x5T9T7tJwAtSrZIr', mail: 'admin@163.com', firstname: 'xingping', lastname: 'wu'); user.admin = true; user.save!" RAILS_ENV=production
+# 启动 OpenProject
+docker run --name openproject \
+--restart unless-stopped \
+-e "SECRET_KEY_BASE=aITsO5HUSdbgTGK3" \
+-e "DATABASE_URL=postgresql://postgres:x5T9T7tJwAtSrZIr@postgres:5432/openproject" \
+-e "OPENPROJECT_DEFAULT__LANGUAGE=zh-CN" \
+-e "OPENPROJECT_HTTPS=false" \
+-e "OPENPROJECT_HOST__NAME=127.0.0.1:8080" \
+-v /home/openproject/assets:/var/openproject/assets \
+-p 8080:8080 \
+-d openproject/openproject:17.3.1-slim
+```
+
+> -e 的参数值需要根据实据情况修改
+
 ## 安装 Umami
 
 Umami 是一款开源的、以隐私为重点的网络分析工具，可作为 Google Analytics 的替代品。它提供了对网站流量、用户行为和性能的重要要素，同时优先考虑数据隐私。
