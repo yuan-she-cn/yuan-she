@@ -389,6 +389,22 @@ sudo fdisk <磁盘名>
 sudo mkfs.vfat -F 32 <分区名>
 ```
 
+## 常用软件（推荐）
+
+| 类型          | 软件                                                                                                     |
+| ------------- | -------------------------------------------------------------------------------------------------------- |
+| 浏览器        | [Chrome](https://www.google.cn/chrome)、[Firefox](https://www.firefox.com)                               |
+| 即时通信      | [QQ](https://im.qq.com)、[微信](https://weixin.qq.com)                                                   |
+| 办公套件      | [WPS Office](https://www.wps.cn)                                                                         |
+| 笔记工具      | [有道云笔记](https://note.youdao.com)                                                                    |
+| 虚拟机        | [VirtualBox](https://www.virtualbox.org)、[QEMU](https://www.qemu.org)                                   |
+| SSH、远程桌面 | [HexHub](https://www.hexhub.cn)、[Remmina](https://remmina.org)、[贝锐向日葵](https://sunlogin.oray.com) |
+| 数据建模      | [PDMaas](https://www.pdmaas.cn)                                                                          |
+| 数据库工具    | [HexHub](https://www.hexhub.cn)、[DBeaver](https://dbeaver.io)                                           |
+| 编辑器        | [Visual Studio Code](https://code.visualstudio.com)                                                      |
+| API 工具      | [Apipost](https://www.apipost.cn)                                                                        |
+| 视频录制      | [OBS Studio](https://obsproject.com)                                                                     |
+
 ## 常用命令
 
 ```bash shell
