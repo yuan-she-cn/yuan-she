@@ -488,3 +488,27 @@ sudo reboot
 # 新驱动可能安装失败或显示效果更差
 # 此时可以执行上面 卸载驱动 部分的命令，系统会默认使用之前的 nouveau 驱动
 ```
+
+### 右键解压文件，出现文件名乱码
+
+```bash shell
+sudo apt install -y unar zenity
+vim ~/.local/share/nautilus/scripts/解压到此处
+##!/bin/bash
+#for file in "$@"; do
+#  if [ -f "$file" ]; then
+#    cd "$(dirname "$file")" || continue
+#    if unar -q -o - "$file" 2>&1 | grep -q "requires a password"; then
+#      password=$(zenity --password --title="解压需要密码" --text="请输入密码：")
+#      if [ -z "$password" ]; then
+#        continue
+#      fi
+#      unar -f -p "$password" -d "$file"
+#    else
+#      unar -f -d "$file"
+#    fi
+#  fi
+#done
+chmod +x ~/.local/share/nautilus/scripts/解压到此处
+nautilus -q
+```
