@@ -153,6 +153,16 @@ docker run --name mysql \
 
 > 可以通过设置 **MYSQL_ROOT_PASSWORD** 参数修改密码
 
+### 使用 MySQL
+
+```bash shell
+docker exec -it mysql /bin/bash
+mysql -u root -p
+CREATE DATABASE IF NOT EXISTS `<数据库名>` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS '<用户>'@'%' IDENTIFIED BY '<密码>';
+GRANT ALL PRIVILEGES ON `<数据库名>`.* TO '<用户>'@'%';
+```
+
 ## 安装 SQL Server
 
 SQL Server 是一款关系数据库管理系统。应用程序和工具连接到 SQL Server 实例或数据库，并使用 Transact-SQL 进行通信。
