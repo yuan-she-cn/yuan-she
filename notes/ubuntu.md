@@ -368,7 +368,47 @@ sudo crontab -e
 #0-59/5 * * * * /usr/local/bin/clean-logs.sh
 ```
 
-## 分区与格式化硬盘（U盘）
+## 挂载磁盘
+
+```bash shell
+# 查看磁盘信息
+sudo lsblk
+
+# 分区磁盘（磁盘名：/dev/sdb、/dev/vdb）
+sudo fdisk <磁盘名>
+# p 查看分区
+# d 删除分区
+# n 新建分区
+# p 新建主分区
+# w 确认更改
+
+# 格式化分区（分区名：/dev/sdb1、/dev/vdb1）
+sudo mkfs.ext4 <分区名>
+
+# 挂载分区（以 /dev/vdb2 挂载到 /var 为例）
+# 进入单用户模式
+init 1
+# 临时挂载
+mount /dev/vdb2 /mnt
+# 拷贝数据
+cp -a /var/* /mnt/
+# 卸载临时挂载
+umount /mnt
+# 清除数据
+rm -rf /var/*
+# 正式挂载
+mount /dev/vdb2 /var
+# 进入多用户模式（图形模式为 5）
+init 3
+
+# 设置永久生效
+# 获取分区UUID
+blkid <分区名>
+vim /etc/fstab
+#UUID=<分区UUID> <挂载目录> ext4 defaults 0 2
+```
+
+## 格式化 U 盘
 
 ```bash shell
 # 查看磁盘信息
