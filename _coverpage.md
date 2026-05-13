@@ -10,7 +10,7 @@
   <div class="footer">
     <a target="_blank" href="https://beian.miit.gov.cn/#/Integrated/recordQuery">黔ICP备2024033505号</a>
     <a target="_blank" href="https://beian.mps.gov.cn/#/query/webSearch">贵公网安备52011102003047号</a>
-    <div>© 2026-2026 吴兴平 版权所有</div>
+    <div>© 2024-2026 版权所有</div>
   </div>
 </div>
 
