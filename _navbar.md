@@ -6,3 +6,4 @@
   - [Ubuntu](/notes/ubuntu.md)
   - [Docker](/notes/docker.md)
   - [Kafka](/notes/kafka.md)
+- [人工智能之旅](/ai/deepseek)
