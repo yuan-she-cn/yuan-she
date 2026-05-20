@@ -34,7 +34,7 @@
 ```bash shell
 docker pull ollama/ollama:0.24.0
 sudo mkdir /home/ollama
-sudo chmod 666 /home/ollama
+sudo chmod 777 /home/ollama
 docker run --name ollama \
 --restart unless-stopped \
 -v /home/ollama:/root/.ollama \

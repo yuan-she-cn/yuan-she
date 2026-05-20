@@ -1,1 +1,2 @@
 - [DeepSeek](/ai/deepseek)
+- [Hermes Agent](/ai/hermes-agent)
