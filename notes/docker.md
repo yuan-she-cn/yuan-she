@@ -556,6 +556,8 @@ docker run --name nps \
 
 ### 安装客户端
 
+- Linux
+
 ```bash shell
 wget https://github.com/ehang-io/nps/releases/download/v0.26.10/linux_amd64_client.tar.gz
 sudo mkdir /services/npc-0.26.10
@@ -566,6 +568,20 @@ sudo npc start
 
 # 卸载
 sudo ./npc uninstall
+```
+
+- Windows（需要管理员权限）
+
+```管理员：PowerShell
+New-Item -Path "D:\services\npc-0.26.10" -ItemType Directory
+cd D:\services\npc-0.26.10
+Invoke-WebRequest -Uri "https://github.com/ehang-io/nps/releases/download/v0.26.10/windows_amd64_client.tar.gz" -OutFile "windows_amd64_client.tar.gz"
+tar -zxvf windows_amd64_client.tar.gz -C D:\services\npc-0.26.10
+./npc.exe install -server="<主机>:<端口>" -vkey="<密钥>"
+./npc.exe start
+
+# 卸载
+./npc.exe uninstall
 ```
 
 ## 安装迅雷（NAS版）
