@@ -429,6 +429,26 @@ sudo fdisk <磁盘名>
 sudo mkfs.vfat -F 32 <分区名>
 ```
 
+## 配置文件夹共享
+
+```bash shell
+sudo apt install -y samba
+sudo vim /etc/samba/smb.conf
+#[<共享名称>]
+#  path = <绝对路径>
+#  browseable = yes
+#  read only = no
+#  guest ok = no
+#  valid users = <用户名称>
+
+# 设置密码
+sudo smbpasswd -a <用户名称>
+sudo systemctl restart smbd
+```
+
+> 用户名称必需为系统用户  
+> 在 Windows 访问：`\\<ip>\<共享名称>`，在 QEMU 虚拟机中，宿主机 ip 为 10.0.2.2
+
 ## 常用软件（推荐）
 
 | 类型          | 软件                                                                                                     |
