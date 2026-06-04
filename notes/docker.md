@@ -434,6 +434,24 @@ docker run --name openproject \
 > -e 的参数值需要根据实据情况修改  
 > 默认用户名和密码：admin/admin
 
+## 安装 禅道
+
+```bash shell
+docker pull hub.zentao.net/app/zentao:22.2-20260526
+sudo mkdir -p /home/zentao/data
+sudo chmod 777 /home/zentao/data
+docker run --name zentao \
+--restart unless-stopped \
+-e "ZT_MYSQL_HOST=mysql" \
+-e "ZT_MYSQL_PORT=3306" \
+-e "ZT_MYSQL_DB=zentao" \
+-e "ZT_MYSQL_USER=zentao" \
+-e "ZT_MYSQL_PASSWORD=x5T9T7tJwAtSrZIr" \
+-v /home/zentao/data:/data \
+-p 80:80 \
+-d hub.zentao.net/app/zentao:22.2-20260526
+```
+
 ## 安装 Umami
 
 Umami 是一款开源的、以隐私为重点的网络分析工具，可作为 Google Analytics 的替代品。它提供了对网站流量、用户行为和性能的重要要素，同时优先考虑数据隐私。
