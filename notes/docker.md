@@ -353,6 +353,120 @@ docker run --name nginx \
 -d nginx:1.28.0
 ```
 
+> 主配置文件在容器的 /etc/nginx/nginx.conf
+
+### 安装前置 ModSecurity（WAF）
+
+安装 ModSecurity
+
+```bash shell
+docker pull owasp/modsecurity:3.0.8
+sudo mkdir -p /home/modsec/conf
+sudo mkdir -p /home/modsec/logs
+sudo mkdir -p /home/modsec/cert
+sudo mkdir -p /home/modsec/rule
+sudo vim /home/modsec/conf/default.conf.template
+#server {
+#  listen 80;
+#  server_name _;
+#
+#  modsecurity on;
+#  modsecurity_rules_file /etc/modsecurity/modsec.conf;
+#
+#  location / {
+#    proxy_pass http://nginx;
+#    proxy_set_header Host $host;
+#    proxy_set_header X-Real-IP $remote_addr;
+#    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#    proxy_set_header X-Forwarded-Proto $scheme;
+#  }
+#}
+#
+#server {
+#  listen 443 ssl;
+#  server_name yuan-she.cn www.yuan-she.cn;
+#
+#  modsecurity on;
+#  modsecurity_rules_file /etc/modsecurity/modsec.conf;
+#
+#  ssl_certificate /etc/nginx/cert/yuan-she.cn.crt;
+#  ssl_certificate_key /etc/nginx/cert/yuan-she.cn.key;
+#  ssl_session_timeout 5m;
+#  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+#  ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+#  ssl_prefer_server_ciphers on;
+#
+#  location / {
+#    proxy_pass http://nginx;
+#    proxy_set_header Host $host;
+#    proxy_set_header X-Real-IP $remote_addr;
+#    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#    proxy_set_header X-Forwarded-Proto $scheme;
+#  }
+#}
+cd /home/modsec/rule
+sudo wget https://raw.githubusercontent.com/SpiderLabs/ModSecurity/v3/master/modsecurity.conf-recommended
+sudo mv modsecurity.conf-recommended modsec.conf
+# 加载 CRS 规则，追加
+sudo vim modsec.conf
+#Include /etc/modsecurity/crs-setup.conf
+#Include /etc/modsecurity/rules/*.conf
+sudo wget https://raw.githubusercontent.com/SpiderLabs/ModSecurity/v3/master/unicode.mapping
+sudo wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.4.tar.gz
+sudo tar -zxvf v3.3.4.tar.gz
+sudo cp -r coreruleset-3.3.4/rules .
+sudo cp coreruleset-3.3.4/crs-setup.conf.example crs-setup.conf
+# 修改 CRS 拦截模式，修改
+sudo vim crs-setup.conf
+#SecDefaultAction "phase:1,log,auditlog,deny"
+#SecDefaultAction "phase:2,log,auditlog,deny"
+#SecAction \
+#  "id:900000,\
+#  phase:1,\
+#  nolog,\
+#  pass,\
+#  t:none,\
+#  setvar:tx.paranoia_level=2"
+sudo rm -rf coreruleset-3.3.4
+sudo rm -rf v3.3.4.tar.gz
+docker run --name modsec \
+--restart unless-stopped \
+--network network_1 \
+-v /home/modsec/conf:/etc/nginx/templates/conf.d \
+-v /home/modsec/logs:/var/log/modsecurity \
+-v /home/modsec/cert:/etc/nginx/cert \
+-v /home/modsec/rule:/etc/modsecurity \
+-p 80:80 \
+-p 443:443 \
+-d owasp/modsecurity:3.0.8
+
+docker exec -it modsec /bin/bash
+# 第一次开启 ModSecurity
+sed -i 's/SecRuleEngine DetectionOnly/SecRuleEngine On/' /etc/modsecurity/modsec.conf
+# 关闭 ModSecurity
+sed -i 's/SecRuleEngine On/SecRuleEngine Off/' /etc/modsecurity/modsec.conf
+# 开启 ModSecurity
+sed -i 's/SecRuleEngine Off/SecRuleEngine On/' /etc/modsecurity/modsec.conf
+nginx -s reload
+```
+
+测试页面
+
+```html
+<html>
+  <body>
+    Nginx 1.28.0
+    <script>
+      const param = new URLSearchParams(window.location.search).get("param");
+      const code = "console.log('" + param + "')";
+      eval(code);
+    </script>
+  </body>
+</html>
+```
+
+> 请求加入 ?param=%27);alert(1);// 参数访问
+
 ## 安装 GitLab
 
 ```bash shell
