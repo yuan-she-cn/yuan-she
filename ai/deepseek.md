@@ -3,6 +3,11 @@
 **DeepSeek** 是由 **深度求索** 公司创造的 AI 助手。它是一个 **纯文本模型**，支持阅读链接和处理多种文件格式（如：txt、word、excel、ppt、pdf、图像等），拥有 1M 的上下文窗口。**DeepSeek** 支持联网搜索功能（需要用户手动开启），并提供 APP 端的语音输入服务。**DeepSeek** 目前完全免费使用。
 [官方网站 https://deepseek.com](https://deepseek.com)
 
+## 获取 API key
+
+1. 登录 DeepSeek [开放平台 https://platform.deepseek.com](https://platform.deepseek.com)
+2. API keys -> 创建 API key -> 输入[名称] -> 创建 -> 复制（妥善保管）
+
 ## 私有化部署
 
 ### 硬件要求
