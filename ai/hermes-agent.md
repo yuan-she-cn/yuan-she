@@ -3,6 +3,25 @@
 Hermes Agent 是一个由 Nous Research 团队开发的开源 AI 智能体框架，它被定位为一个“与你一同成长的智能体”，核心特点是拥有持久记忆和自主进化能力。
 [官方网站 https://hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com)
 
+## 在 Ubuntu 中安装
+
+示例在 Ubuntu 24.04.3 LTS 测试通过。
+
+```bash shell
+# 安装 Hermes Agent 依赖 git
+sudo apt install -y git
+
+# 安装 Hermes Agent
+sudo curl -fsSL https://hermes-agent.nousresearch.com/install.sh | sudo bash
+source ~/.bashrc
+hermes
+
+# 代码位置：/usr/local/lib/hermes-agent
+# 二进制文件位置：/usr/local/bin/hermes
+# 数据位置：/root/.hermes
+# 个人配置位置：~/.hermes
+```
+
 ## 在 Docker 中安装
 
 ```bash shell
