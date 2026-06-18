@@ -1,61 +1,77 @@
 # Hermes Agent
 
-Hermes Agent 是一个由 Nous Research 团队开发的开源 AI 智能体框架，它被定位为一个“与你一同成长的智能体”，核心特点是拥有持久记忆和自主进化能力。
-[官方网站 https://hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com)
+Hermes Agent 是一个由 Nous Research 团队开发的开源 AI 智能体框架，他被定位为一个“与你一同成长的智能体”，核心特点是拥有持久记忆和自主进化能力。官方网站 [https://hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com)
 
-## 在 Ubuntu 中安装
+## 安装 Hermes Agent
 
-示例在 Ubuntu 24.04.3 LTS 测试通过。
+### 准备工作
+
+**订阅 Nous Portal**
+
+1. 访问 Nous Portal 官网 [https://portal.nousresearch.com](https://portal.nousresearch.com)
+2. 输入[邮箱] -> Submit -> 输入[验证码]
+3. Billing -> Subscription -> 选择[Free] -> Subscribe via Stripe
+4. 填写[银行卡] -> 订阅
+
+### 在 Ubuntu 中安装
+
+**示例环境**
+
+| 软件   | 版本        |
+| ------ | ----------- |
+| Ubuntu | 24.04.3 LTS |
 
 ```bash shell
-# 安装 Hermes Agent 依赖 git
+# 安装依赖
 sudo apt install -y git
 
 # 安装 Hermes Agent
 sudo curl -fsSL https://hermes-agent.nousresearch.com/install.sh | sudo bash
-source ~/.bashrc
-hermes
 
 # 代码位置：/usr/local/lib/hermes-agent
-# 二进制文件位置：/usr/local/bin/hermes
+# 命令位置：/usr/local/bin/hermes
 # 数据位置：/root/.hermes
-# 个人配置位置：~/.hermes
+# 配置位置：~/.hermes
 ```
 
-## 在 Docker 中安装
+### 在 Docker 中安装
+
+**示例环境**
+
+| 软件   | 版本        |
+| ------ | ----------- |
+| Ubuntu | 24.04.3 LTS |
+| Docker | 28.5.1      |
 
 ```bash shell
-docker pull nousresearch/hermes-agent:v2026.5.16
+# 安装 Hermes Agent
 sudo mkdir /home/hermes-agent
 sudo chmod 777 /home/hermes-agent
-docker run -it --rm \
--v /home/hermes-agent:/opt/data \
-nousresearch/hermes-agent:v2026.5.16 setup
-
-# 依次选择
-# Quick setup - provider, model & messaging (recommended)
-# Ollama Cloud (cloud-hosted open models - ollama.com)
-# 无需提供 OLLAMA_API_KEY
-# Keep current (local)
-# Skip - set up later with 'hermes setup gateway'
-
+docker pull nousresearch/hermes-agent:v2026.6.5
 docker run --name hermes-agent \
 --restart unless-stopped \
--e "API_SERVER_ENABLED=true" \
--e "API_SERVER_HOST=0.0.0.0" \
--e "API_SERVER_CORS_ORIGINS=*" \
--e "API_SERVER_KEY=aITsO5HUSdbgTGK3" \
--e "HERMES_DASHBOARD=true" \
 -v /home/hermes-agent:/opt/data \
--p 8642:8642 \
--p 9119:9119 \
--d nousresearch/hermes-agent:v2026.5.16 gateway run
-```
+-dit nousresearch/hermes-agent:v2026.6.5
 
-## 连接 Ollama 模型
+# 配置 Hermes Agent
+docker exec -it hermes-agent /bin/bash
+hermes setup
+# 选择配置模式（使用快速设置，使用 Nous Portal 订阅）
+#   Quick Setup (Nous Portal) — free OAuth login, no API keys, model + tools (recommended)
+# 授权 Nous Portal 订阅
+#   访问指定网页
+#   Sign in -> 输入[邮箱] -> Submit -> 输入[验证码] -> Connect
+# 选择模型（使用免费模型）
+#   stepfun/step-3.7-flash:free
+# 选择启用工具（全选）
+# 选择命令执行环境（本机）
+#   Local - run directly on this machine (default)
+# 配置消息网关（跳过）
+#   Skip — set up later with 'hermes setup gateway'
 
-```bash shell
-docker network create hermes-network
-docker network connect hermes-network hermes-agent
-docker network connect hermes-network ollama
+# 开启对话
+hermes
+
+# 关闭对话
+/exit
 ```
