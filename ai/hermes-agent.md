@@ -95,3 +95,32 @@ hermes
 # 关闭对话
 /exit
 ```
+
+## 配置消息平台
+
+### 微信平台
+
+```bash shell
+# 配置消息网关
+hermes gateway setup
+# 选择微信平台
+#   Weixin / WeChat  (not configured)
+# 启动二维码登录
+#   Start QR login now? [Y/n]: y
+# 使用微信扫码授权
+#   扫码 -> 连接
+# 配置机器人私信策略（需管理员配对）
+#   Use DM pairing approval (recommended)
+# 配置机器人群聊策略（禁用群聊功能）
+#   Disable group chats (recommended)
+# 配置管理员微信用户ID
+#   Use your Weixin user ID (xxxxxxxxxxxxxxxxxxxx-xxxxxxx@im.wechat) as the home channel? [Y/n]: y
+# 完成配置
+#   Done
+
+# 启动消息网关（使用 Ctrl + C 退出，不会关闭网关）
+hermes gateway run
+
+# 配对用户，通过向机器人发送信息获取配对码
+hermes pairing approve weixin <配对码>
+```
