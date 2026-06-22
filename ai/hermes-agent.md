@@ -28,6 +28,26 @@ sudo apt install -y git
 # 安装 Hermes Agent
 sudo curl -fsSL https://hermes-agent.nousresearch.com/install.sh | sudo bash
 
+# 配置 Hermes Agent
+# 选择配置模式（使用快速设置，使用 Nous Portal 订阅）
+#   Quick Setup (Nous Portal) — free OAuth login, no API keys, model + tools (recommended)
+# 授权 Nous Portal 订阅
+#   访问指定网页
+#   Sign in -> 输入[邮箱] -> Submit -> 输入[验证码] -> Connect
+# 选择模型（使用免费模型）
+#   stepfun/step-3.7-flash:free
+# 选择启用工具（全选）
+# 选择命令执行环境（本机）
+#   Local - run directly on this machine (default)
+# 配置消息网关（跳过）
+#   Skip — set up later with 'hermes setup gateway'
+
+# 开启对话
+hermes
+
+# 关闭对话
+/exit
+
 # 代码位置：/usr/local/lib/hermes-agent
 # 命令位置：/usr/local/bin/hermes
 # 数据位置：/root/.hermes
