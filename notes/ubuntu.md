@@ -428,11 +428,17 @@ sudo fdisk <磁盘名>
 # p 新建主分区
 # w 确认更改
 
-# 格式化分区
+# 格式化分区为 FAT32
 sudo mkfs.vfat -F 32 <分区名>
+
+# 格式化分区为 exFAT
+sudo apt install -y exfatprogs
+sudo mkfs.exfat <分区名>
 ```
 
 ## 制作启动 U 盘
+
+**适用于 Linux 镜像**
 
 ```bash shell
 # 确定磁盘名（磁盘名：/dev/sdb）
@@ -441,6 +447,16 @@ sudo lsblk
 sudo umount <分区名>
 # 写入镜像
 sudo dd if=<镜像文件> of=<磁盘名> bs=4M status=progress && sync
+```
+
+**适用于 Linux 和 Windows 镜像**
+
+```bash shell
+wget https://github.com/ventoy/Ventoy/releases/download/v1.1.12/ventoy-1.1.12-linux.tar.gz
+tar -zxvf ventoy-1.1.12-linux.tar.gz
+cd ventoy-1.1.12
+sudo ./Ventoy2Disk.sh -i <磁盘名>
+# 拷贝 ISO 文件进入 U 盘
 ```
 
 ## 配置文件夹共享
