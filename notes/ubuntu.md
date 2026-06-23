@@ -432,6 +432,17 @@ sudo fdisk <磁盘名>
 sudo mkfs.vfat -F 32 <分区名>
 ```
 
+## 制作启动 U 盘
+
+```bash shell
+# 确定磁盘名（磁盘名：/dev/sdb）
+sudo lsblk
+# 卸载分区（分区名：/dev/sdb1）
+sudo umount <分区名>
+# 写入镜像
+sudo dd if=<镜像文件> of=<磁盘名> bs=4M status=progress && sync
+```
+
 ## 配置文件夹共享
 
 ```bash shell
