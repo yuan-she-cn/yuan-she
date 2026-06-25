@@ -47,11 +47,6 @@ hermes
 
 # 关闭对话
 /exit
-
-# 代码位置：/usr/local/lib/hermes-agent
-# 命令位置：/usr/local/bin/hermes
-# 数据位置：/root/.hermes
-# 配置位置：~/.hermes
 ```
 
 ### 在 Docker 中安装
@@ -123,4 +118,48 @@ hermes gateway run
 
 # 配对用户，通过向机器人发送信息获取配对码
 hermes pairing approve weixin <配对码>
+```
+
+## 文件存储位置
+
+**Ubuntu**
+
+- 源代码：/usr/local/lib/hermes-agent/
+- 命令：/usr/local/bin/hermes
+- 数据：~/.hermes/
+- 会话：~/.hermes/state.db
+
+**Docker**
+
+- 源代码：/opt/hermes/
+- 命令：/opt/hermes/bin/hermes
+- 数据：/opt/data/
+- 会话：/opt/data/state.db
+
+## 常用命令
+
+```bash shell
+# 进入 Hermes Agent 容器
+docker exec -it hermes-agent /bin/bash
+
+# 查看会话列表
+hermes sessions list
+# 启动新会话
+hermes
+# 启动指定会话
+hermes -r <id|title>
+# 重命名会话
+hermes sessions rename <id> <title>
+
+# 运行设置向导
+hermes setup
+# 运行网关设置向导
+hermes gateway setup
+# 启动网关
+hermes gateway run
+```
+
+```hermes
+# 重命名会话
+/title
 ```
