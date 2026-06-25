@@ -1,1 +1,1 @@
-- [OpenProject](/manage/openproject.md)
+- [OpenProject](/manage/openproject)

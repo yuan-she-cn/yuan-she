@@ -1,1 +1,1 @@
-- [站点导航](/other/navigation.md)
+- [站点导航](/other/navigation)

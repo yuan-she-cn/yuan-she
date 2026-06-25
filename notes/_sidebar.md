@@ -1,3 +1,3 @@
-- [Ubuntu](/notes/ubuntu.md)
-- [Docker](/notes/docker.md)
-- [Kafka](/notes/kafka.md)
+- [Ubuntu](/notes/ubuntu)
+- [Docker](/notes/docker)
+- [Kafka](/notes/kafka)
