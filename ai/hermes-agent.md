@@ -146,6 +146,8 @@ docker exec -it hermes-agent /bin/bash
 hermes sessions list
 # 启动新会话
 hermes
+# 使用 TUI 启动
+hermes --tui
 # 启动指定会话
 hermes -r <id|title>
 # 启动调试模式
