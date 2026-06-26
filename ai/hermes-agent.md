@@ -148,6 +148,8 @@ hermes sessions list
 hermes
 # 启动指定会话
 hermes -r <id|title>
+# 启动调试模式
+hermes chat -v
 # 重命名会话
 hermes sessions rename <id> <title>
 
@@ -161,5 +163,8 @@ hermes gateway run
 
 ```hermes
 # 重命名会话
-/title
+/title <title>
+
+# 后台会话
+/background <message>
 ```
