@@ -204,6 +204,8 @@ sudo apt install -y git
 
 # 查看 Git 版本
 git -v
+# 切换分支
+git switch master
 ```
 
 ## 安装 Java
