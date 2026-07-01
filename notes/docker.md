@@ -160,6 +160,13 @@ EXIT;
 psql -U postgres -d <数据库名> -f <脚本文件>.sql
 ```
 
+#### 常用查询
+
+```sql
+# 查询所有角色
+SELECT rolname FROM pg_roles;
+```
+
 ## 安装 MySQL
 
 MySQL 是最流行的开源 SQL 数据库管理系统，由 Oracle 公司开发、分发和支持。
