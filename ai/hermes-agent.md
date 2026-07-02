@@ -127,6 +127,8 @@ hermes pairing approve weixin <配对码>
 - 源代码：/usr/local/lib/hermes-agent/
 - 命令：/usr/local/bin/hermes
 - 数据：~/.hermes/
+- 配置：~/.hermes/config.yaml
+- 密钥：~/.hermes/.env
 - 会话：~/.hermes/state.db
 
 **Docker**
@@ -134,6 +136,8 @@ hermes pairing approve weixin <配对码>
 - 源代码：/opt/hermes/
 - 命令：/opt/hermes/bin/hermes
 - 数据：/opt/data/
+- 配置：/opt/data/config.yaml
+- 密钥：/opt/data/.env
 - 会话：/opt/data/state.db
 
 ## 常用命令
@@ -169,4 +173,7 @@ hermes gateway run
 
 # 后台会话
 /background <message>
+
+# 切换模型，添加 --global 参数，则会同时修改 config.yaml 文件
+/model <model> --provider <provider>
 ```
