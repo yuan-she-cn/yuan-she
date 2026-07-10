@@ -362,6 +362,43 @@ docker run --name nginx \
 
 > 主配置文件在容器的 /etc/nginx/nginx.conf
 
+### 常用配置
+
+```conf
+server {
+  listen 80;
+  server_name yuan-she.cn;
+  rewrite ^(.*)$ https://$host$1 permanent;
+}
+
+server {
+  listen 443 ssl;
+  server_name yuan-she.cn;
+  client_max_body_size 1024M;
+
+  ssl_certificate /etc/nginx/cert/yuan-she.cn.crt;
+  ssl_certificate_key /etc/nginx/cert/yuan-she.cn.key;
+  ssl_session_timeout 5m;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+  ssl_prefer_server_ciphers on;
+
+  location / {
+    root /usr/nginx/html/yuan-she;
+    try_files $uri $uri/ /index.html;
+    index index.html index.htm;
+  }
+
+  location /server/ {
+    proxy_pass http://localhost:8080/;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+}
+```
+
 ### 安装前置 ModSecurity（WAF）
 
 安装 ModSecurity
