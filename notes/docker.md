@@ -730,6 +730,34 @@ docker run --name nps \
 
 !> 容器重启时，nps 服务可能不能正常启动，可执行 **docker exec nps nps start** 手动启动。
 
+### 修复绕过权限漏洞
+
+**复现漏洞**
+
+```html
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+      const baseUrl = "https://<host>:8080";
+      const timestamp = Math.floor(Date.now() / 1000);
+      const authKey = CryptoJS.MD5(String(timestamp)).toString();
+      console.log(`${baseUrl}/index/index?timestamp=${timestamp}&auth_key=${authKey}`);
+    </script>
+  </head>
+</html>
+```
+
+!> 将 baseUrl 更换为管理地址，如：<协议>://<主机>:<端口>  
+浏览器打印的地址即可绕过权限
+
+**修复漏洞**
+
+1. 修改 /home/nps/conf/nps.conf 文件
+2. 去掉 auth_key 注释，并赋值 16位随机字符串
+3. 赋值 auth_crypt_key 为 16位随机字符串
+4. 重启 nps 服务
+
 ### 安装客户端
 
 - Linux
