@@ -362,6 +362,17 @@ sudo systemctl enable --now virtlogd
 6. 设置 [名称] -> 选择网络：用户模式联网 -> 完成
 7. Try or Install Ubuntu Server -> Continue in rich mode -> English -> Continue without updating -> Done x 7 -> Continue -> 配置主机与用户信息 -> Done -> Continue -> Done -> Reboot Now [参考](/notes/ubuntu?id=安装-ubuntu)
 
+## 安装 字体
+
+```bash shell
+# 从 Windows C:\Windows\Fonts 中复制字体文件，以 simsun.ttc 为例
+sudo mkdir -p /usr/share/fonts/truetype/sim
+sudo cp ./simsun.ttc /usr/share/fonts/truetype/sim/simsun.ttc
+sudo chmod 644 /usr/share/fonts/truetype/sim/*
+sudo fc-cache -fv
+sudo fc-list | grep simsun
+```
+
 ## 卸载 deb 包
 
 ```bash shell
