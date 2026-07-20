@@ -50,31 +50,35 @@ docker network create network_1
 ## 配置集群
 
 ```bash shell
-# 初始化集群，在管理节点执行
+# 管理节点命令
+# 初始化集群
 docker swarm init --advertise-addr <管理节点IP>
 # 查看 token
 docker swarm join-token worker
-
-# 加入集群，在工作节点执行
-docker swarm join --token <Token> <管理节点IP:2377>
-
-# 查看节点信息，在管理节点执行
+# 查看节点信息
 docker node ls
 
-# 创建跨主机网络
+# 工作节点命令
+# 加入集群
+docker swarm join --token <Token> <管理节点IP:2377>
+# 退出集群
+docker swarm leave
+
+# 创建集群网络
 docker network create --driver overlay --attachable <网络名>
+# 创建桥接网络
+docker network create <网络名>
+# 删除网络
+docker network rm <网络名>
 
 # 现有容器加入网络
 docker network connect <网络名> <容器名>
-
 # 现有容器移除网络
 docker network disconnect <网络名> <容器名>
 # 查看网络使用情况
 docker network inspect <网络名>
 # 查看现有容器网络
 docker inspect <容器名> --format="{{.NetworkSettings.Networks}}"
-# 删除网络
-docker network rm <网络名>
 ```
 
 > 管理节点需要开启端口：UDP 7946 4789，TCP 7946 2377  
