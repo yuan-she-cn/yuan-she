@@ -362,6 +362,22 @@ sudo systemctl enable --now virtlogd
 6. 设置 [名称] -> 选择网络：用户模式联网 -> 完成
 7. Try or Install Ubuntu Server -> Continue in rich mode -> English -> Continue without updating -> Done x 7 -> Continue -> 配置主机与用户信息 -> Done -> Continue -> Done -> Reboot Now [参考](/notes/ubuntu?id=安装-ubuntu)
 
+## 安装 微信开发者工具
+
+```bash shell
+# 直接安装
+wget https://github.com/msojocs/wechat-web-devtools-linux/releases/download/v2.01.2510290-2/io.github.msojocs.wechat-devtools-linux_2.01.2510290-2_amd64.deb
+sudo dpkg -i ./io.github.msojocs.wechat-devtools-linux_2.01.2510290-2_amd64.deb
+
+# 自行构建（依赖 Docker 环境）
+git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git
+# git clone --recurse-submodules https://gitcode.com/gh_mirrors/we/wechat-web-devtools-linux.git
+cd wechat-web-devtools-linux
+git checkout v2.01.2510290-2
+./tools/build-with-docker.sh
+./tools/install-desktop-icon-node
+```
+
 ## 安装 字体
 
 ```bash shell
