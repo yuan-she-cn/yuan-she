@@ -373,9 +373,11 @@ sudo dpkg -i ./io.github.msojocs.wechat-devtools-linux_2.01.2510290-2_amd64.deb
 git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git
 # git clone --recurse-submodules https://gitcode.com/gh_mirrors/we/wechat-web-devtools-linux.git
 cd wechat-web-devtools-linux
-git checkout v2.01.2510290-2
+# 这个版本有些问题（2026-07-27）
+# git checkout v2.01.2510290-2
+# git submodule update --init --recursive
 ./tools/build-with-docker.sh
-./tools/install-desktop-icon-node
+./tools/install-desktop-icon-bash.sh
 ```
 
 ## 安装 字体
