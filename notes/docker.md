@@ -828,6 +828,8 @@ docker exec -it <ID/容器名> /bin/bash
 
 # 构建镜像
 docker build -t <镜像名> <构建目录>
+# 清理构建缓存
+docker builder prune -a -f
 
 # 从容器中复制文件
 docker cp <ID/容器名>:<文件名> <文件名>
