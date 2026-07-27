@@ -544,6 +544,8 @@ sudo systemctl restart smbd
 ```bash shell
 # 查看命令位置
 which <命令>
+# 查找文件位置（示例：find / -name "*.log"）
+find <搜索路径> -name <文件名称>
 
 # 查看磁盘使用情况
 df -hT
