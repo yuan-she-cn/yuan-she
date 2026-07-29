@@ -400,6 +400,14 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
   }
+
+  location /assets/ {
+    alias /usr/nginx/html/assets/;
+    try_files $uri = 404;
+    expires 30d;
+    add_header Cache-Control "public, immutable";
+    access_log off;
+  }
 }
 ```
 
