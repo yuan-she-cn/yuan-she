@@ -1,3 +1,4 @@
 - [Ubuntu](/notes/ubuntu)
 - [Docker](/notes/docker)
 - [Kafka](/notes/kafka)
+- [Java](/notes/java)
