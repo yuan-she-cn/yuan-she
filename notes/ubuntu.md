@@ -225,11 +225,11 @@ git push <remote_name> <branch_name> --force
 
 ```bash shell
 # 安装 Java
-wget https://download.oracle.com/java/17/archive/jdk-17.0.11_linux-x64_bin.tar.gz
-sudo tar -zxvf jdk-17.0.11_linux-x64_bin.tar.gz -C /usr/local/lib/
+wget https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.tar.gz
+sudo tar -zxvf jdk-17.0.12_linux-x64_bin.tar.gz -C /usr/local/lib/
 vim ~/.profile
 ## 文件追加
-#JAVA_HOME=/usr/local/lib/jdk-17.0.11
+#JAVA_HOME=/usr/local/lib/jdk-17.0.12
 #PATH=$PATH:$JAVA_HOME/bin
 #CLASSPATH=.:$JAVA_HOME/lib
 #export JAVA_HOME PATH CLASSPATH
@@ -243,11 +243,11 @@ java -version
 
 ```bash shell
 # 安装 Maven
-wget https://dlcdn.apache.org/maven/maven-3/3.9.12/binaries/apache-maven-3.9.12-bin.tar.gz
-sudo tar -zxvf apache-maven-3.9.12-bin.tar.gz -C /usr/local/lib/
+wget https://dlcdn.apache.org/maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.tar.gz
+sudo tar -zxvf apache-maven-3.9.16-bin.tar.gz -C /usr/local/lib/
 sudo mkdir -p /var/local/maven/repo
 sudo chmod -R 777 /var/local/maven
-sudo vim /usr/local/lib/apache-maven-3.9.12/conf/settings.xml
+sudo vim /usr/local/lib/apache-maven-3.9.16/conf/settings.xml
 ## settings 标签加入
 #  <localRepository>/var/local/maven/repo</localRepository>
 ## mirrors 标签加入
@@ -259,7 +259,7 @@ sudo vim /usr/local/lib/apache-maven-3.9.12/conf/settings.xml
 #    </mirror>
 vim ~/.profile
 ## 文件追加
-#PATH=$PATH:/usr/local/lib/apache-maven-3.9.12/bin
+#PATH=$PATH:/usr/local/lib/apache-maven-3.9.16/bin
 #export PATH
 source ~/.profile
 
