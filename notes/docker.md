@@ -90,7 +90,7 @@ PostgreSQL 是一款强大的开源对象关系数据库系统，经过 35 年�
 [官方网站](https://www.postgresql.org)
 
 ```bash shell
-docker pull postgres:18.0
+docker pull postgres:18.4
 sudo mkdir -p /home/postgres/data
 sudo mkdir -p /home/postgres/logs
 sudo chmod 777 /home/postgres/logs
@@ -101,7 +101,7 @@ docker run --name postgres \
 -v /home/postgres/data:/var/lib/postgresql/18/docker \
 -v /home/postgres/logs:/var/log/postgresql \
 -p 5432:5432 \
--d postgres:18.0
+-d postgres:18.4
 docker exec -it postgres /bin/bash
   echo "logging_collector = on" >> /var/lib/postgresql/18/docker/postgresql.conf
   echo "log_directory = '/var/log/postgresql'" >> /var/lib/postgresql/18/docker/postgresql.conf
