@@ -96,6 +96,7 @@ hermes
 ### 微信平台
 
 ```bash shell
+docker exec -it hermes-agent /bin/bash
 # 配置消息网关
 hermes gateway setup
 # 选择微信平台
@@ -118,6 +119,66 @@ hermes gateway run
 
 # 配对用户，通过向机器人发送信息获取配对码
 hermes pairing approve weixin <配对码>
+```
+
+## 配置本地模型
+
+### 安装模型运行工具
+
+**Ollama**
+
+```bash shell
+docker pull ollama/ollama:0.24.0
+sudo mkdir /home/ollama
+sudo chmod 777 /home/ollama
+docker run --name ollama \
+--restart unless-stopped \
+-v /home/ollama:/root/.ollama \
+-p 11434:11434 \
+-d ollama/ollama:0.24.0
+```
+
+> 模型仓库地址：[https://ollama.com/library](https://ollama.com/library)
+
+### 安装大语言模型
+
+**qwen3:4b**
+
+```bash shell
+docker exec -it ollama /bin/bash
+ollama pull qwen3:4b
+ollama run qwen3:4b
+
+# 出现如下提示符就可以与 千问 对话了
+# >>> Send a message (/? for help)
+# 使用 /bye 命令退出对话
+# >>> /bye
+```
+
+### 配置本地模型
+
+```bash shell
+# 配置桥接网络
+docker network create network_1
+docker network connect network_1 hermes-agent
+docker network connect network_1 ollama
+
+# 配置本地模型
+docker exec -it hermes-agent /bin/bash
+hermes model
+# 选择服务商
+#   Custom endpoint (enter URL manually)
+# 配置 OpenAI 兼容端点
+#   API base URL: http://ollama:11434/v1
+#   API key: [直接回车]
+# 选择 API 兼容模式
+#   Choice [1-4, Enter to keep current/detected]: 1
+# 选择 API 模型
+#   Select model [1-n] or type name: [根据实际情况选择]
+# 配置令牌上下文长度
+#   Context length in tokens [leave blank for auto-detect]: [直接回车]
+# 配置显示名称
+#   Display name [Ollama:11434]: [直接回车]
 ```
 
 ## 文件存储位置
