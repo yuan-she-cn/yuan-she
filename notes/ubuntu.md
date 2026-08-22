@@ -455,6 +455,29 @@ vim /etc/fstab
 #UUID=<分区UUID> <挂载目录> ext4 defaults 0 2
 ```
 
+## 配置蓝牙设备
+
+```
+# 进入/退出交互环境
+bluetoothctl/exit
+# 开启/关闭蓝牙
+power on/off
+# 列出配对设备
+devices
+# 删除配对设备
+remove <MAC地址>
+# 扫描附近设备
+scan on/off
+# 配对设备
+pair <MAC地址>
+# 信任设备
+trust <MAC地址>
+# 连接设备
+connect <MAC地址>
+```
+
+!> 出现：[agent] Passkey: xxxxxx 时，则需要设备输入配对码 xxxxxx
+
 ## 格式化 U 盘
 
 ```bash shell
