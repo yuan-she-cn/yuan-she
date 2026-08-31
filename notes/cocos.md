@@ -33,3 +33,15 @@ Asset.addRef
 - Octree Scene Culling
 - Skin
 - PostSettings
+
+## 节点
+
+- 创建节点：Hierarchy -> 右键 -> Create -> Empty Node
+
+### 节点属性
+
+- Node.Position 位置
+- Node.Rotation 旋转
+- Node.Scale 缩放
+- Node.Mobility 可移动性（光照相关）
+- Node.Layer 可见性
