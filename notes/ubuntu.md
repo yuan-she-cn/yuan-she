@@ -529,6 +529,13 @@ sudo ./Ventoy2Disk.sh -i <磁盘名>
 # 拷贝 ISO 文件进入 U 盘
 ```
 
+## 远程桌面 Windows
+
+```bsh shell
+sudo apt install -y freerdp2-x11
+xfreerdp /v:<主机>:<端口> /u:<用户> /p:"<密码>" /dynamic-resolution +clipboard /cert:ignore
+```
+
 ## 配置文件夹共享
 
 ```bash shell
