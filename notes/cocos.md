@@ -42,6 +42,16 @@ Asset.addRef
 
 - Node.Position 位置
 - Node.Rotation 旋转
+
+```TypeScript
+// 获取 Rotation
+Node.eulerAngles
+```
+
 - Node.Scale 缩放
 - Node.Mobility 可移动性（光照相关）
 - Node.Layer 可见性
+
+## 组件
+
+- 添加组件：Inspector -> Add Component
