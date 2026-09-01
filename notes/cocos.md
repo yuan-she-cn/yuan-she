@@ -55,3 +55,9 @@ Node.eulerAngles
 ## 组件
 
 - 添加组件：Inspector -> Add Component
+
+## 脚本
+
+- 创建脚本：Assets -> 右键 -> Create -> TypeScript
+- 挂载脚本：Inspector -> Add Component -> Custom Script -> 选择脚本
+- 配置脚本编辑器：File -> Preferences -> Program Manager -> Default Script Editor
