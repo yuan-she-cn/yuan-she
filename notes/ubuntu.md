@@ -219,6 +219,9 @@ git push <remote_name> <branch_name>
 git log
 git reset --hard <commit_id>
 git push <remote_name> <branch_name> --force
+
+# 存储密码
+git config --global credential.helper store
 ```
 
 ## 安装 Java
