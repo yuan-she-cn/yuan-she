@@ -61,3 +61,13 @@ Node.eulerAngles
 - 创建脚本：Assets -> 右键 -> Create -> TypeScript
 - 挂载脚本：Inspector -> Add Component -> Custom Script -> 选择脚本
 - 配置脚本编辑器：File -> Preferences -> Program Manager -> Default Script Editor
+
+### 生命周期函数
+
+- onLoad 节点首次激活时触发
+- onEnable 节点 active 属性或组件 enabled 属性变为 true 时触发
+- start 组件首次激活前触发
+- update(deltaTime) 每一帧渲染前触发
+- lateUpdate(deltaTime) 每一帧渲染后触发
+- onDisable 节点 active 属性或组件 enabled 属性变为 false 时触发
+- onDestroy 节点或组件消毁前触发
