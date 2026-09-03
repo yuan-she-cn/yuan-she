@@ -7,22 +7,9 @@
 - 创建场景：Assets -> 右键 -> Create -> Scene
 - 切换场景：Assets -> 双击
 
-```TypeScript
-// 切换场景
-director.loadScene
-```
-
 ### 场景属性
 
 - Auto Release Assets 是否自动释放
-
-```TypeScript
-// 释放资源
-assetManager.releaseAsset
-// 保留资源
-Asset.addRef
-```
-
 - Ambient
   - Sky Lighting Color
   - Sky Illum
@@ -42,12 +29,6 @@ Asset.addRef
 
 - Node.Position 位置
 - Node.Rotation 旋转
-
-```TypeScript
-// 获取 Rotation
-Node.eulerAngles
-```
-
 - Node.Scale 缩放
 - Node.Mobility 可移动性（光照相关）
 - Node.Layer 可见性
@@ -107,3 +88,47 @@ Node.eulerAngles
 - editorOnly 导出项目前剔除，默认 false
 - override 是否覆盖，默认 false
 - displayOrder 设置排序，类型 Number
+
+### 示例代码
+
+**创建组件**
+
+```TypeScript
+import { _decorator, Component } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+}
+```
+
+**获取节点和组件**
+
+```TypeScript
+import { _decorator, Node, Component, Label, Button, find } from "cc";
+const { ccclass, property } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+  // 获取其他节点，需要在编辑器中拖拽赋值，取值为赋值节点
+  @property(Node)
+  private otherNode = null;
+  // 获取其他组件，需要在编辑器中拖拽赋值，取值为赋值节点的组件
+  @property(Label)
+  private otherLabel = null;
+
+  start() {
+    // 获取所在节点
+    const node = this.node;
+    // 获取所在节点其他组件
+    const label = this.getComponent(Label);
+    const button = node.getComponent(Button);
+    // 获取子节点
+    const children = node.children;
+    const camera = node.getChildByName("Camera");
+    // 通过路径获取节点
+    const sprite = find("Camera/Sprite", node);
+    const editBox = find("Canvas/Camera/EditBox");
+  }
+}
+```
