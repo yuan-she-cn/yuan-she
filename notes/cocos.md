@@ -105,7 +105,7 @@ export class component extends Component {
 **获取节点和组件**
 
 ```TypeScript
-import { _decorator, Node, Component, Label, Button, find } from "cc";
+import { _decorator, Node, Component, Label, Button, find, Vec3 } from "cc";
 const { ccclass, property } = _decorator;
 
 @ccclass("component")
@@ -129,6 +129,31 @@ export class component extends Component {
     // 通过路径获取节点
     const sprite = find("Camera/Sprite", node);
     const editBox = find("Canvas/Camera/EditBox");
+
+    // 节点是否激活
+    // const active = node.activeInHierarchy;
+    // 关闭节点
+    // node.active = false;
+    // 激活节点
+    // node.active = true;
+    // 更改父节点
+    // sprite.parent = node;
+    // sprite.removeFromParent();
+    // node.addChild(sprite);
+    // 更改节点位置
+    // sprite.setPosition(100, 100, 0);
+    // sprite.setPosition(new Vec3(100, 100, 0));
+    // sprite.position = new Vec3(100, 100, 0);
+    // 更改节点旋转
+    // sprite.setRotationFromEuler(0, 0, 90);
+    // 更改节点缩放
+    // sprite.setScale(2, 2, 2);
+    // 组件是否激活
+    // const enabled = this.otherLabel.enabled;
+    // 关闭组件
+    // this.otherLabel.enabled = false;
+    // 激活组件
+    // this.otherLabel.enabled = true;
   }
 }
 ```
