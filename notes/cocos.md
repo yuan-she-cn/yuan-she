@@ -5,7 +5,7 @@
 ## 场景
 
 - 创建场景：Assets -> 右键 -> Create -> Scene
-- 切换场景：Assets -> 双击
+- 编辑场景：Assets -> 双击
 
 ### 场景属性
 
@@ -36,6 +36,13 @@
 ## 组件
 
 - 添加组件：Inspector -> Add Component
+
+## 预制件
+
+- 创建预制件：Assets -> 右键 -> Create -> Node Prefab
+- 编辑预制件：Assets -> 双击
+- 使用预制件：Assets 拖拽到 Hierarchy
+- 编辑预制件节点：Hierarchy -> 点击
 
 ## 脚本
 
@@ -105,17 +112,20 @@ export class component extends Component {
 **获取节点和组件**
 
 ```TypeScript
-import { _decorator, Node, Component, Label, Button, find, Vec3, director, instantiate } from "cc";
+import { _decorator, Node, Component, Label, Button, find, Vec3, director, instantiate, Prefab } from "cc";
 const { ccclass, property } = _decorator;
 
 @ccclass("component")
 export class component extends Component {
   // 获取其他节点，需要在编辑器中拖拽赋值，取值为赋值节点
   @property(Node)
-  private otherNode = null;
+  private otherNode: Node = null;
   // 获取其他组件，需要在编辑器中拖拽赋值，取值为赋值节点的组件
   @property(Label)
-  private otherLabel = null;
+  private otherLabel: Label = null;
+  // 获取预制节点，需要在编辑器中拖拽赋值，取值为赋值预制件
+  @property(Prefab)
+  private prefab: Prefab = null;
 
   start() {
     // 获取当前场景
@@ -166,6 +176,8 @@ export class component extends Component {
     newNode.destroy();
     // 节点是否有效（未销毁）
     const isValid = newNode.isValid;
+    // 创建预制节点
+    const newPrefab = instantiate(this.prefab);
   }
 }
 ```
