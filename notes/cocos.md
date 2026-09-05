@@ -135,6 +135,10 @@ export class component extends Component {
     // 获取所在节点其他组件
     const label = this.getComponent(Label);
     const button = node.getComponent(Button);
+    // 创建组件
+    // const label = this.node.addComponent(Label);
+    // 销毁组件
+    label.destroy();
     // 获取子节点
     const children = node.children;
     const camera = node.getChildByName("Camera");
