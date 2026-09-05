@@ -105,7 +105,7 @@ export class component extends Component {
 **获取节点和组件**
 
 ```TypeScript
-import { _decorator, Node, Component, Label, Button, find, Vec3 } from "cc";
+import { _decorator, Node, Component, Label, Button, find, Vec3, director, instantiate } from "cc";
 const { ccclass, property } = _decorator;
 
 @ccclass("component")
@@ -118,6 +118,8 @@ export class component extends Component {
   private otherLabel = null;
 
   start() {
+    // 获取当前场景
+    const scene = director.getScene();
     // 获取所在节点
     const node = this.node;
     // 获取所在节点其他组件
@@ -154,6 +156,16 @@ export class component extends Component {
     // this.otherLabel.enabled = false;
     // 激活组件
     // this.otherLabel.enabled = true;
+
+    // 创建节点
+    const newNode = new Node("newNode");
+    const newSprite = instantiate(sprite);
+    // 添加节点
+    scene.addChild(newNode);
+    // 销毁节点
+    newNode.destroy();
+    // 节点是否有效（未销毁）
+    const isValid = newNode.isValid;
   }
 }
 ```
