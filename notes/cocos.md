@@ -109,7 +109,7 @@ export class component extends Component {
 }
 ```
 
-**获取节点和组件**
+**节点和组件操作**
 
 ```TypeScript
 import { _decorator, Node, Component, Label, Button, find, Vec3, director, instantiate, Prefab } from "cc";
@@ -178,6 +178,40 @@ export class component extends Component {
     const isValid = newNode.isValid;
     // 创建预制节点
     const newPrefab = instantiate(this.prefab);
+  }
+}
+```
+
+**计时器**
+
+```TypeScript
+import { _decorator, Component } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+  start() {
+    this.scheduleOnce(function () {
+      console.log("1s 后执行 1 次");
+    }, 1);
+    this.schedule(function () {
+      console.log("间隔 1s 执行 1 次");
+    }, 1);
+    this.schedule(function () {
+      console.log("3s 后开始执行，重复 2+1 次，每次间隔 1s");
+    }, 1, 2, 3);
+    let callback;
+    let count = 0;
+    this.schedule(callback = function () {
+      count++;
+      console.log("间隔 1s 执行 1 次");
+      if (count == 5) {
+        this.unschedule(callback);
+        console.log("取消计时器");
+      }
+    }, 1);
+    // 取消所有计时器
+    this.unscheduleAllCallbacks();
   }
 }
 ```
