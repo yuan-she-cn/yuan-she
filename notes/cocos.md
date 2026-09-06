@@ -219,3 +219,29 @@ export class component extends Component {
   }
 }
 ```
+
+**场景**
+
+```TypeScript
+import { _decorator, Component, director } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+  start() {
+    // 设置常驻节点，节点必须为根节点
+    director.addPersistRootNode(this.node);
+    // 取消常驻节点
+    director.removePersistRootNode(this.node);
+    // 加载并切换场景
+    director.loadScene("main", function () {
+      console.log("加载场景后回调");
+    });
+    // 预加载场景后切换场景
+    director.preloadScene("main", function () {
+      // 预加载场景后回调
+      director.loadScene("main");
+    });
+  }
+}
+```
