@@ -245,3 +245,37 @@ export class component extends Component {
   }
 }
 ```
+
+### 事件
+
+**自定义事件**
+
+```TypeScript
+import { _decorator, Component, EventTarget } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+  start() {
+    const eventTarget = new EventTarget();
+    // 监听事件，需要手动关闭
+    eventTarget.on("first", this.firstEvent, this);
+    // 监听事件，响应后自动关闭
+    eventTarget.once("second", this.secondEvent);
+    // 取消事件，相同类型、相同回调、相同目标
+    eventTarget.off("first", this.firstEvent, this);
+    // 取消事件，相同类型
+    eventTarget.off("second");
+    // 发射事件
+    eventTarget.emit("first", "param");
+    eventTarget.emit("second");
+  }
+  // 最多支持 5 个参数
+  firstEvent(event) {
+    console.log("firstEvent", this, event);
+  }
+  secondEvent() {
+    console.log("secondEvent");
+  }
+}
+```
