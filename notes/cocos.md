@@ -289,8 +289,8 @@ export class component extends Component {
 | 鼠标事件 | Input.EventType.MOUSE_MOVE   | EventMouse        | 鼠标移动     |
 | 鼠标事件 | Input.EventType.MOUSE_WHEEL  | EventMouse        | 鼠标滚轮滚动 |
 | 触摸事件 | Input.EventType.TOUCH_START  | EventTouch        | 触摸开始     |
-| 触摸事件 | Input.EventType.TOUCH_END    | EventTouch        | 触摸结束     |
 | 触摸事件 | Input.EventType.TOUCH_MOVE   | EventTouch        | 触摸移动     |
+| 触摸事件 | Input.EventType.TOUCH_END    | EventTouch        | 触摸结束     |
 | 触摸事件 | Input.EventType.TOUCH_CANCEL | EventTouch        | 触摸中断     |
 | 键盘事件 | Input.EventType.KEY_DOWN     | EventKeyboard     | 键盘按下     |
 | 键盘事件 | Input.EventType.KEY_UP       | EventKeyboard     | 键盘释放     |
@@ -327,6 +327,39 @@ export class component extends Component {
   }
   devicemotion(event: EventAcceleration) {
     console.log(event.acc);
+  }
+}
+```
+
+**节点事件**
+
+需要依赖 UITransform 组件
+
+| 输入事件 | 事件类型                    | 回调参数   | 说明                 |
+| -------- | --------------------------- | ---------- | -------------------- |
+| 鼠标事件 | Node.EventType.MOUSE_DOWN   | EventMouse | 鼠标按下             |
+| 鼠标事件 | Node.EventType.MOUSE_UP     | EventMouse | 鼠标释放             |
+| 鼠标事件 | Node.EventType.MOUSE_ENTER  | EventMouse | 鼠标移入             |
+| 鼠标事件 | Node.EventType.MOUSE_MOVE   | EventMouse | 鼠标移动             |
+| 鼠标事件 | Node.EventType.MOUSE_LEAVE  | EventMouse | 鼠标移出             |
+| 鼠标事件 | Node.EventType.MOUSE_WHEEL  | EventMouse | 鼠标滚轮滚动         |
+| 触摸事件 | Node.EventType.TOUCH_START  | EventTouch | 触摸开始             |
+| 触摸事件 | Node.EventType.TOUCH_MOVE   | EventTouch | 触摸移动             |
+| 触摸事件 | Node.EventType.TOUCH_END    | EventTouch | 触摸结束，节点内离开 |
+| 触摸事件 | Node.EventType.TOUCH_CANCEL | EventTouch | 触摸结束，节点外离开 |
+
+```TypeScript
+import { _decorator, Component, Node, EventMouse } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+  start() {
+    // 监听事件
+    this.node.on(Node.EventType.MOUSE_DOWN, this.mouseDown, this);
+  }
+  mouseDown(event: EventMouse) {
+    console.log("mouseDown", event);
   }
 }
 ```
