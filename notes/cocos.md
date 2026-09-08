@@ -279,3 +279,54 @@ export class component extends Component {
   }
 }
 ```
+
+**全局事件**
+
+| 输入事件 | 事件类型                     | 回调参数          | 说明         |
+| -------- | ---------------------------- | ----------------- | ------------ |
+| 鼠标事件 | Input.EventType.MOUSE_DOWN   | EventMouse        | 鼠标按下     |
+| 鼠标事件 | Input.EventType.MOUSE_UP     | EventMouse        | 鼠标释放     |
+| 鼠标事件 | Input.EventType.MOUSE_MOVE   | EventMouse        | 鼠标移动     |
+| 鼠标事件 | Input.EventType.MOUSE_WHEEL  | EventMouse        | 鼠标滚轮滚动 |
+| 触摸事件 | Input.EventType.TOUCH_START  | EventTouch        | 触摸开始     |
+| 触摸事件 | Input.EventType.TOUCH_END    | EventTouch        | 触摸结束     |
+| 触摸事件 | Input.EventType.TOUCH_MOVE   | EventTouch        | 触摸移动     |
+| 触摸事件 | Input.EventType.TOUCH_CANCEL | EventTouch        | 触摸中断     |
+| 键盘事件 | Input.EventType.KEY_DOWN     | EventKeyboard     | 键盘按下     |
+| 键盘事件 | Input.EventType.KEY_UP       | EventKeyboard     | 键盘释放     |
+| 键盘事件 | Input.EventType.KEY_PRESSING | EventKeyboard     | 键盘持续按下 |
+| 设备事件 | Input.EventType.DEVICEMOTION | EventAcceleration | 设备传感     |
+
+```TypeScript
+import { _decorator, Component, input, Input, EventMouse, EventKeyboard, KeyCode, EventAcceleration } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+  start() {
+    // 监听事件
+    input.on(Input.EventType.MOUSE_DOWN, this.mouseDown, this);
+    // 取消事件
+    input.off(Input.EventType.MOUSE_DOWN, this.mouseDown, this);
+    // 键盘事件
+    input.on(Input.EventType.KEY_DOWN, this.keyDown, this);
+    // 设备事件，需要启用设备传感
+    input.setAccelerometerEnabled(true);
+    input.on(Input.EventType.DEVICEMOTION, this.devicemotion, this);
+  }
+  mouseDown(event: EventMouse) {
+    console.log("mouseDown", event);
+  }
+  keyDown(event: EventKeyboard) {
+    console.log(event.keyCode);
+    switch (event.keyCode) {
+      case KeyCode.KEY_A:
+        console.log("A");
+        break;
+    }
+  }
+  devicemotion(event: EventAcceleration) {
+    console.log(event.acc);
+  }
+}
+```
