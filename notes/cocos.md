@@ -363,3 +363,76 @@ export class component extends Component {
   }
 }
 ```
+
+- 事件冒泡：父节点脚本组件
+
+```TypeScript parent.ts
+import { _decorator, Component } from "cc";
+import { EventCustom } from "./event-custom";
+const { ccclass } = _decorator;
+
+@ccclass("parent")
+export class parent extends Component {
+  start() {
+    this.node.on("first", this.firstEvent, this);
+  }
+  firstEvent(event: EventCustom) {
+    console.log("parent");
+  }
+}
+```
+
+- 事件冒泡：子节点脚本组件
+
+```TypeScript child.ts
+import { _decorator, Component } from "cc";
+import { EventCustom } from "./event-custom";
+const { ccclass } = _decorator;
+
+@ccclass("child")
+export class child extends Component {
+  start() {
+    this.node.on("first", this.firstEvent, this);
+  }
+  firstEvent(event: EventCustom) {
+    console.log("child");
+    // 终止冒泡
+    event.propagationStopped = true;
+  }
+}
+```
+
+- 事件冒泡：孙节点脚本组件
+
+```TypeScript grandson.ts
+import { _decorator, Component } from "cc";
+import { EventCustom } from "./event-custom";
+const { ccclass } = _decorator;
+
+@ccclass("grandson")
+export class grandson extends Component {
+  start() {
+    this.node.on("first", this.firstEvent, this);
+    // 发射事件，bubbles 参数定义是否冒泡，系统事件默认冒泡，自定义事件默认不冒泡
+    this.node.dispatchEvent(new EventCustom("first", true));
+  }
+  firstEvent(event: EventCustom) {
+    console.log("grandson");
+  }
+}
+```
+
+- 事件冒泡：自定义事件
+
+```TypeScript event-custom.ts
+import { Event } from "cc";
+
+export class EventCustom extends Event {
+  constructor(type: string, bubbles?: boolean, attribute?: any) {
+    super(type, bubbles);
+    this.attribute = attribute;
+  }
+  // 自定义属性
+  attribute: any;
+}
+```
