@@ -436,3 +436,39 @@ export class EventCustom extends Event {
   attribute: any;
 }
 ```
+
+- 事件穿透：节点A
+
+```TypeScript node-a
+import { _decorator, Component, Node, EventTouch } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("nodea")
+export class nodea extends Component {
+  start() {
+    this.node.on(Node.EventType.TOUCH_START, this.touchStart, this);
+  }
+  touchStart(event: EventTouch) {
+    console.log("node-a");
+  }
+}
+```
+
+- 事件穿透：节点B
+
+```TypeScript node-b
+import { _decorator, Component, Node, EventTouch } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("nodeb")
+export class nodeb extends Component {
+  start() {
+    this.node.on(Node.EventType.TOUCH_START, this.touchStart, this);
+  }
+  touchStart(event: EventTouch) {
+    console.log("node-b");
+    // 开启事件穿透
+    event.preventSwallow = true;
+  }
+}
+```
