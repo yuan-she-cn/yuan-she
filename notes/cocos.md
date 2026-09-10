@@ -96,9 +96,7 @@
 - override 是否覆盖，默认 false
 - displayOrder 设置排序，类型 Number
 
-### 示例代码
-
-**创建组件**
+### 组件创建
 
 ```TypeScript
 import { _decorator, Component } from "cc";
@@ -109,7 +107,7 @@ export class component extends Component {
 }
 ```
 
-**节点和组件操作**
+### 组件和节点操作
 
 ```TypeScript
 import { _decorator, Node, Component, Label, Button, find, Vec3, director, instantiate, Prefab } from "cc";
@@ -186,7 +184,33 @@ export class component extends Component {
 }
 ```
 
-**计时器**
+### 场景操作
+
+```TypeScript
+import { _decorator, Component, director } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+  start() {
+    // 设置常驻节点，节点必须为根节点
+    director.addPersistRootNode(this.node);
+    // 取消常驻节点
+    director.removePersistRootNode(this.node);
+    // 加载并切换场景
+    director.loadScene("main", function () {
+      console.log("加载场景后回调");
+    });
+    // 预加载场景后切换场景
+    director.preloadScene("main", function () {
+      // 预加载场景后回调
+      director.loadScene("main");
+    });
+  }
+}
+```
+
+### 计时器
 
 ```TypeScript
 import { _decorator, Component } from "cc";
@@ -220,35 +244,9 @@ export class component extends Component {
 }
 ```
 
-**场景**
+## 事件
 
-```TypeScript
-import { _decorator, Component, director } from "cc";
-const { ccclass } = _decorator;
-
-@ccclass("component")
-export class component extends Component {
-  start() {
-    // 设置常驻节点，节点必须为根节点
-    director.addPersistRootNode(this.node);
-    // 取消常驻节点
-    director.removePersistRootNode(this.node);
-    // 加载并切换场景
-    director.loadScene("main", function () {
-      console.log("加载场景后回调");
-    });
-    // 预加载场景后切换场景
-    director.preloadScene("main", function () {
-      // 预加载场景后回调
-      director.loadScene("main");
-    });
-  }
-}
-```
-
-### 事件
-
-**自定义事件**
+### 自定义事件
 
 ```TypeScript
 import { _decorator, Component, EventTarget } from "cc";
@@ -280,7 +278,7 @@ export class component extends Component {
 }
 ```
 
-**全局事件**
+### 全局事件
 
 | 输入事件 | 事件类型                     | 回调参数          | 说明         |
 | -------- | ---------------------------- | ----------------- | ------------ |
@@ -331,7 +329,7 @@ export class component extends Component {
 }
 ```
 
-**节点事件**
+### 节点事件
 
 需要依赖 UITransform 组件
 
@@ -364,7 +362,7 @@ export class component extends Component {
 }
 ```
 
-- 事件冒泡：父节点脚本组件
+**事件冒泡**
 
 ```TypeScript parent.ts
 import { _decorator, Component } from "cc";
@@ -381,8 +379,6 @@ export class parent extends Component {
   }
 }
 ```
-
-- 事件冒泡：子节点脚本组件
 
 ```TypeScript child.ts
 import { _decorator, Component } from "cc";
@@ -402,8 +398,6 @@ export class child extends Component {
 }
 ```
 
-- 事件冒泡：孙节点脚本组件
-
 ```TypeScript grandson.ts
 import { _decorator, Component } from "cc";
 import { EventCustom } from "./event-custom";
@@ -422,8 +416,6 @@ export class grandson extends Component {
 }
 ```
 
-- 事件冒泡：自定义事件
-
 ```TypeScript event-custom.ts
 import { Event } from "cc";
 
@@ -437,7 +429,7 @@ export class EventCustom extends Event {
 }
 ```
 
-- 事件穿透：节点A
+**事件穿透**
 
 ```TypeScript node-a
 import { _decorator, Component, Node, EventTouch } from "cc";
@@ -453,8 +445,6 @@ export class nodea extends Component {
   }
 }
 ```
-
-- 事件穿透：节点B
 
 ```TypeScript node-b
 import { _decorator, Component, Node, EventTouch } from "cc";
