@@ -246,6 +246,8 @@ export class component extends Component {
 
 ## 事件
 
+- 禁用多点触摸事件：Project -> Project Settings -> Macro Configurations -> ENABLE_MULTI_TOUCH（取消勾选）
+
 ### 自定义事件
 
 ```TypeScript
@@ -346,6 +348,8 @@ export class component extends Component {
 | 触摸事件 | Node.EventType.TOUCH_END    | EventTouch | 触摸结束，节点内离开 |
 | 触摸事件 | Node.EventType.TOUCH_CANCEL | EventTouch | 触摸结束，节点外离开 |
 
+[其他节点事件](https://docs.cocos.com/creator/3.8/manual/zh/engine/event/event-node.html#node-%E7%9A%84%E5%85%B6%E5%AE%83%E4%BA%8B%E4%BB%B6)
+
 ```TypeScript
 import { _decorator, Component, Node, EventMouse } from "cc";
 const { ccclass } = _decorator;
@@ -354,7 +358,13 @@ const { ccclass } = _decorator;
 export class component extends Component {
   start() {
     // 监听事件
+    // 第 4 个参数为 false 时为事件冒泡，执行顺序从 子节点 到 父节点
+    // 第 4 个参数为 true 时为事件捕获，执行顺序从 父节点 到 子节点
     this.node.on(Node.EventType.MOUSE_DOWN, this.mouseDown, this);
+    // 暂停节点事件，参数为 true 时，包含所有子节点
+    this.node.pauseSystemEvents(false);
+    // 恢复节点事件，参数为 true 时，包含所有子节点
+    this.node.resumeSystemEvents(false);
   }
   mouseDown(event: EventMouse) {
     console.log("mouseDown", event);
@@ -392,7 +402,7 @@ export class child extends Component {
   }
   firstEvent(event: EventCustom) {
     console.log("child");
-    // 终止冒泡
+    // 终止冒泡，Button、Toggle、BlockInputEvents 组件默认终止冒泡
     event.propagationStopped = true;
   }
 }
