@@ -348,7 +348,8 @@ export class component extends Component {
 | 触摸事件 | Node.EventType.TOUCH_END    | EventTouch | 触摸结束，节点内离开 |
 | 触摸事件 | Node.EventType.TOUCH_CANCEL | EventTouch | 触摸结束，节点外离开 |
 
-[其他节点事件](https://docs.cocos.com/creator/3.8/manual/zh/engine/event/event-node.html#node-%E7%9A%84%E5%85%B6%E5%AE%83%E4%BA%8B%E4%BB%B6)
+[其他事件类型](https://docs.cocos.com/creator/3.8/manual/zh/engine/event/event-node.html#node-%E7%9A%84%E5%85%B6%E5%AE%83%E4%BA%8B%E4%BB%B6)
+[回调参数说明](https://docs.cocos.com/creator/3.8/manual/zh/engine/event/event-api.html)
 
 ```TypeScript
 import { _decorator, Component, Node, EventMouse } from "cc";
