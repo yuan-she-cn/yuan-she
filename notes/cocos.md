@@ -472,3 +472,52 @@ export class nodeb extends Component {
   }
 }
 ```
+
+### 屏幕事件
+
+| 输入事件 | 事件类型             | 回调参数 | 说明         |
+| -------- | -------------------- | -------- | ------------ |
+| 屏幕事件 | "window-resize"      |          | 窗口大小变化 |
+| 屏幕事件 | "orientation-change" |          | 屏幕方向变化 |
+| 屏幕事件 | "fullscreen-change"  |          | 全屏变化     |
+
+```TypeScript
+import { _decorator, Component, screen, macro, Node, EventMouse } from "cc";
+const { ccclass } = _decorator;
+
+@ccclass("component")
+export class component extends Component {
+  private fullScreen = false;
+
+  start() {
+    screen.on("window-resize", this.windowResize, this);
+    screen.on("orientation-change", this.orientationChange, this);
+    screen.on("fullscreen-change", this.fullscreenChange, this);
+    this.node.on(Node.EventType.MOUSE_DOWN, this.mouseDown, this);
+  }
+  windowResize(width: number, height: number) {
+    console.log("windowResize", "width", width, "height", height);
+  }
+  orientationChange(orientation: number) {
+    if (orientation == macro.ORIENTATION_LANDSCAPE_LEFT || orientation == macro.ORIENTATION_LANDSCAPE_RIGHT) {
+      console.log("横向");
+    } else {
+      console.log("纵向");
+    }
+  }
+  fullscreenChange(width: number, height: number) {
+    console.log("fullscreenChange", "width", width, "height", height);
+  }
+  mouseDown(event: EventMouse) {
+    if (this.fullScreen) {
+      // 退出全屏
+      screen.exitFullScreen();
+      this.fullScreen = false;
+    } else {
+      // 进入全屏
+      screen.requestFullScreen();
+      this.fullScreen = true;
+    }
+  }
+}
+```
