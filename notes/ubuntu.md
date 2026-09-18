@@ -369,18 +369,26 @@ sudo systemctl enable --now virtlogd
 
 ```bash shell
 # 直接安装
-wget https://github.com/msojocs/wechat-web-devtools-linux/releases/download/v2.01.2510290-2/io.github.msojocs.wechat-devtools-linux_2.01.2510290-2_amd64.deb
-sudo dpkg -i ./io.github.msojocs.wechat-devtools-linux_2.01.2510290-2_amd64.deb
+wget https://github.com/msojocs/wechat-web-devtools-linux/releases/download/v2.02.2608070-1/io.github.msojocs.wechat-devtools-linux_2.02.2608070-1_amd64.deb
+sudo dpkg -i ./io.github.msojocs.wechat-devtools-linux_2.02.2608070-1_amd64.deb
+# 卸载
+sudo rm -rf /opt/apps/io.github.msojocs.wechat-devtools-linux/
+sudo rm -rf /usr/share/applications/io.github.msojocs.wechat-devtools-linux.desktop
 
 # 自行构建（依赖 Docker 环境）
 git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git
 # git clone --recurse-submodules https://gitcode.com/gh_mirrors/we/wechat-web-devtools-linux.git
 cd wechat-web-devtools-linux
 # 这个版本有些问题（2026-07-27）
-# git checkout v2.01.2510290-2
+# git checkout v2.02.2608070-1
 # git submodule update --init --recursive
 ./tools/build-with-docker.sh
 ./tools/install-desktop-icon-bash.sh
+# 卸载
+# 查看安装目录
+cat ~/.local/share/applications/wechat-devtools.desktop
+rm -rf <安装目录>
+rm -rf ~/.local/share/applications/wechat-devtools.desktop
 ```
 
 ## 安装 字体
