@@ -402,6 +402,21 @@ sudo fc-cache -fv
 sudo fc-list | grep simsun
 ```
 
+## 设置 AppImage 图标
+
+```bash shell
+sudo mkdir -p /home/apps/<应用名称>/
+sudo cp <应用包>.AppImage /home/apps/<应用名称>/<应用包>.AppImage
+sudo cp <应用名称>.png /home/apps/<应用名称>/<应用名称>.png
+sudo chmod +x /home/apps/<应用名称>/<应用包>.AppImage
+sudo vim /usr/share/applications/<应用名称>.desktop
+[Desktop Entry]
+Name=<应用名称>
+Type=Application
+Exec=/home/apps/<应用名称>/<应用包>.AppImage
+Icon=/home/apps/<应用名称>/<应用名称>.png
+```
+
 ## 卸载 deb 包
 
 ```bash shell
